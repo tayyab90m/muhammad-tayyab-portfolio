@@ -12,7 +12,7 @@ const Projects = () => {
       link: 'https://keeyu.com'
     },
     {
-      title: 'AutoMart – Car Marketplace',
+      title: 'Car Marketplace',
       category: 'E-commerce',
       description: 'Buy and sell cars with advanced search filters, real-time listings, and secure transactions on a trusted platform.',
       image: 'car_marketplace.jpg',
@@ -28,12 +28,28 @@ const Projects = () => {
       link: 'https://criclay.com'
     },
     {
-      title: 'FitLife Planner',
+      title: 'Boss Body Portal',
       category: 'Health & Fitness',
       description: 'A wellness app offering gym training programs, personalized nutrition plans, and healthy recipes tailored to your fitness goals.',
       image: 'gym_project.jpg',
       stats: { users: '120K+ Users', efficiency: '+94%', impact: '98% Satisfaction' },
       link: 'https://bb-portal.promarlins.com/'
+    },
+    {
+      title: 'Catered Club',
+      category: 'Food Delivery',
+      description: 'Catered Club is a food delivery catering service that provides healthy office snacks, sandwich platters, and event catering from a curated selection of local kitchens and restaurants.',
+      image: 'catered club.jpg',
+      stats: { users: '25K+ Users', efficiency: '+82%', impact: '93% Accuracy' },
+      link: 'https://cateredclub.com'
+    },
+    {
+      title: 'Lasso Checkout',
+      category: 'E-commerce',
+      description: 'Lasso powers your entire checkout flow. From global payment methods to individual consumer insights, get the tools and analytics you need to make better decisions.',
+      image: 'Payment Gateway .jpg',
+      stats: { users: '10K+ Users', efficiency: '+91%', impact: '97% Satisfaction' },
+      link: 'https://lassocheckout.com/'
     }
   ];
 

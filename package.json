@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "lucide-react": "^0.488.0",
-    "nodemailer": "^8.0.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.5.0",

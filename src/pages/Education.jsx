@@ -24,25 +24,25 @@ const Education = () => {
   ];
 
   return (
-    <div className="pt-60 pb-16 bg-gray-800">
+    <div className="pt-36 pb-16 md:pt-44">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 mb-12">
-          <GraduationCap className="text-blue-400" size={48} />
-          <h1 className="text-4xl font-bold text-white">Education & Certifications</h1>
+          <GraduationCap className="text-blue-500 dark:text-blue-400" size={48} />
+          <h1 className="text-4xl font-bold text-slate-950 dark:text-white">Education & Certifications</h1>
         </div>
         <div className="space-y-10">
           {education.map((item) => (
             <div
               key={item.degree}
-              className="bg-gray-700/60 rounded-xl p-8 shadow-xl hover:bg-gray-700 transition-colors"
+              className="rounded-3xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/60 transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20 dark:hover:bg-white/10"
             >
-              <h2 className="text-2xl font-semibold text-blue-400 mb-2">{item.degree}</h2>
-              <h3 className="text-xl text-gray-200 mb-2">{item.institution}</h3>
-              <div className="flex items-center text-gray-400 mb-4">
+              <h2 className="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-2">{item.degree}</h2>
+              <h3 className="text-xl text-slate-800 dark:text-gray-200 mb-2">{item.institution}</h3>
+              <div className="flex items-center text-slate-500 dark:text-gray-400 mb-4">
                 <Calendar size={18} className="mr-2" />
                 <span>{item.year}</span>
               </div>
-              <p className="text-gray-300 leading-relaxed">{item.description}</p>
+              <p className="text-slate-600 dark:text-gray-300 leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>

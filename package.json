@@ -4,16 +4,11 @@
   "private": true,
   "dependencies": {
     "lucide-react": "^0.488.0",
+    "nodemailer": "^8.0.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.5.0",
     "react-scripts": "5.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "scripts": {
     "start": "react-scripts start",

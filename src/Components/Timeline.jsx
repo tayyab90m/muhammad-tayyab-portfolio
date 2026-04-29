@@ -1,75 +1,65 @@
 import React from "react";
+import { BrainCircuit, Code2, Rocket, Smartphone } from "lucide-react";
 
 const timelineEvents = [
     {
-        year: "2024",
-        title: "Keeyu – E-commerce Optimizer",
-        description: "Launched an AI-powered platform to optimize e-commerce operations, focusing on fulfillment, payment, and logistics issues.",
-        link: {
-            text: "Learn more about Keeyu",
-            url: "https://keeyu.com",
-        },
+        year: "2024 - Present",
+        title: "AI-assisted product engineering",
+        description: "Working with AI-enabled workflows, Cursor, automation ideas, and modern frontend architecture to build faster while keeping quality high.",
+        icon: BrainCircuit,
+        gradient: "from-purple-500 to-pink-500",
     },
     {
-        year: "2023",
-        title: "CricketLive Web",
-        description: "Developed a real-time cricket platform providing scores, highlights, and player performance tracking.",
-        link: {
-            text: "Explore CricketLive",
-            url: "https://criclay.com",
-        },
+        year: "2023 - 2024",
+        title: "Web apps and dashboards",
+        description: "Built responsive product screens, dashboards, API-connected modules, and reusable React components for business-focused platforms.",
+        icon: Code2,
+        gradient: "from-blue-500 to-cyan-500",
+    },
+    {
+        year: "2022 - 2023",
+        title: "Mobile and cross-platform work",
+        description: "Created React Native screens, app flows, navigation patterns, and API-driven mobile features with a focus on smooth user experience.",
+        icon: Smartphone,
+        gradient: "from-emerald-500 to-teal-500",
     },
     {
         year: "2022",
-        title: "AutoMart – Car Marketplace",
-        description: "Built a robust marketplace for buying and selling cars, complete with advanced filters and secure transactions.",
-        link: {
-            text: "Visit AutoMart",
-            url: "https://www.krispx.com/",
-        },
-    },
-    {
-        year: "2024",
-        title: "FitLife Planner",
-        description: "Created a wellness platform offering personalized training and nutrition plans, focusing on fitness goals.",
-        link: {
-            text: "Check out FitLife Planner",
-            url: "https://bb-portal.promarlins.com/",
-        },
+        title: "Started professional product development",
+        description: "Moved from learning and practice projects into real product work, focusing on React, JavaScript, API integrations, and maintainable UI.",
+        icon: Rocket,
+        gradient: "from-orange-500 to-red-500",
     },
 ];
 
 const Timeline = () => {
     return (
-        <section className="py-20 px-4 bg-gray-800/50">
-            <div className="max-w-5xl mx-auto px-4">
-                <h2 className="text-4xl font-bold text-center mb-2">My Journey</h2>
-                <p className="text-center text-gray-500 mb-14 font-bold">
-                    A timeline of milestones and achievements in tech innovation
+        <section className="py-20 px-4 bg-slate-100/80 dark:bg-gray-800/50">
+            <div className="max-w-7xl mx-auto px-4">
+                <h2 className="text-4xl font-bold text-center mb-2 text-slate-950 dark:text-white">My Journey</h2>
+                <p className="mx-auto mb-14 max-w-3xl text-center text-lg text-slate-500 dark:text-gray-400">
+                    A quick look at how my work has grown across frontend engineering, mobile development,
+                    product delivery, and AI-assisted workflows.
                 </p>
 
-                <div className="space-y-16 px-20">
-                    {timelineEvents.map((event, index) => {
-                        const isLeft = index % 2 === 0;
+                <div className="relative grid gap-6 lg:grid-cols-4">
+                    <div className="absolute left-0 right-0 top-16 hidden h-px bg-gradient-to-r from-blue-500/0 via-blue-500/40 to-purple-500/0 lg:block" />
+                    {timelineEvents.map((event) => {
+                        const Icon = event.icon;
                         return (
-                            <div key={index} className={`flex flex-col md:flex-row items-center ${isLeft ? "md:justify-start" : "md:justify-end"}`}>
-                                {!isLeft && <div className="hidden md:block md:w-1/2" />}
-                                <div className="bg-gray-700/50 shadow-xl rounded-xl p-6 md:w-1/2 w-full relative hover:bg-gray-700 transition-colors">
-                                    <span className="absolute w-4 h-4 bg-purple-600 rounded-full top-6 -left-4 md:-left-8 border-4 border-white shadow-md"></span>
-                                    <p className="text-sm font-bold text-purple-700">{event.year}</p>
-                                    <h3 className="text-xl font-semibold mt-1">{event.title}</h3>
-                                    <p className="text-white mt-1">{event.description}</p>
-                                    <a
-                                        href={event.link.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-sm text-purple-600 mt-2 inline-block hover:underline"
-                                    >
-                                        {event.link.text}
-                                    </a>
+                            <article
+                                key={event.title}
+                                className="relative rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
+                            >
+                                <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${event.gradient} text-white shadow-lg`}>
+                                    <Icon size={30} />
                                 </div>
-                                {isLeft && <div className="hidden md:block md:w-1/2" />}
-                            </div>
+                                <p className="mb-3 inline-flex rounded-full bg-blue-500/10 px-3 py-1 text-sm font-bold text-blue-600 dark:text-blue-300">
+                                    {event.year}
+                                </p>
+                                <h3 className="text-xl font-bold text-slate-950 dark:text-white">{event.title}</h3>
+                                <p className="mt-3 leading-relaxed text-slate-600 dark:text-gray-300">{event.description}</p>
+                            </article>
                         );
                     })}
                 </div>

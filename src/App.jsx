@@ -7,22 +7,30 @@ import Footer from './Components/Footer';
 import Contact from './pages/Contact';
 import Hobbies from './pages/Hobbies';
 import Home from './pages/Home';
+import Experience from './pages/Experience';
+import FloatingWhatsApp from './Components/FloatingWhatsApp';
 
 const App = () => {
+  const [isDarkMode, setIsDarkMode] = React.useState(true);
+
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/hobbies" element={<Hobbies />} />
-          </Routes>
-        </main>
-        <Footer />
+      <div className={isDarkMode ? 'dark' : ''}>
+        <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-gradient-to-b dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 dark:text-white">
+          <Header isDarkMode={isDarkMode} onToggleTheme={() => setIsDarkMode((theme) => !theme)} />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/education" element={<Education />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/hobbies" element={<Hobbies />} />
+            </Routes>
+          </main>
+          <FloatingWhatsApp />
+          <Footer />
+        </div>
       </div>
     </BrowserRouter>
   );

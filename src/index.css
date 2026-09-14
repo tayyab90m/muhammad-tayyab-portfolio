@@ -2,6 +2,123 @@
 @tailwind components;
 @tailwind utilities;
 
+/* App shell background: soft off-white (light) / deep navy gradient (dark),
+   both with a subtle dot-grid overlay, matching keeyu.com's site background. */
+.app-shell {
+  background-color: #f9f9f9;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.13) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .app-shell {
+  background-color: #030712;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, #030712, #111827, #1f2937);
+  background-size: 24px 24px, 100% 100%;
+}
+
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes glow-spin {
+  to {
+    --glow-angle: 360deg;
+  }
+}
+
+/* Animated "light chasing the border" ring. Works on any rounded element:
+   a conic-gradient is masked down to just the border band and spun via
+   an animated custom property, so the glow appears to travel around the edge. */
+.glow-border,
+.glow-btn {
+  position: relative;
+  isolation: isolate;
+}
+
+.glow-border::before,
+.glow-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--glow-angle),
+    transparent 0deg,
+    transparent 250deg,
+    #1d4ed8 285deg,
+    #3b82f6 320deg,
+    #93c5fd 345deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: glow-spin 5s linear infinite;
+  opacity: 0.45;
+  transition: opacity 0.35s ease;
+  padding: 1.5px;
+}
+
+.glow-border:hover::before,
+.glow-border:focus-visible::before {
+  opacity: 1;
+}
+
+.glow-btn::before {
+  padding: 2px;
+  opacity: 0.8;
+  animation-duration: 2.8s;
+  background: conic-gradient(
+    from var(--glow-angle),
+    transparent 0deg,
+    transparent 200deg,
+    #1d4ed8 250deg,
+    #3b82f6 300deg,
+    #93c5fd 335deg,
+    transparent 360deg
+  );
+}
+
+.glow-btn:hover::before,
+.glow-btn:focus-visible::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-border::before,
+  .glow-btn::before {
+    animation: none;
+  }
+}
+
+/* Scroll-triggered reveal: elements fade + slide up into place the first
+   time they enter the viewport (see Components/Reveal.jsx). */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .whatsapp-ray {
   position: absolute;
   inset: 10px;

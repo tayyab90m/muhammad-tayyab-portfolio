@@ -15,7 +15,7 @@ const FloatingWhatsApp = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-3xl shadow-2xl shadow-green-500/40 transition-transform duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-300"
+        className="glow-btn relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-3xl shadow-2xl shadow-green-500/40 transition-transform duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-300"
       >
         {showFallback ? (
           <span className="flex h-full w-full items-center justify-center bg-green-500">

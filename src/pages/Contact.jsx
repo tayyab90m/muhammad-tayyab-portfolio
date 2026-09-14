@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import Reveal from '../Components/Reveal';
 
 const Contact = () => {
   const contactCards = [
@@ -9,7 +10,7 @@ const Contact = () => {
       value: 'tayyab90m@gmail.com',
       href: 'mailto:tayyab90m@gmail.com?subject=Portfolio%20Contact&body=Hi%20Tayyab,%0D%0A%0D%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20connect.',
       icon: Mail,
-      gradient: 'from-blue-500 to-cyan-500',
+      iconColor: 'text-blue-400',
       external: false,
     },
     {
@@ -18,7 +19,7 @@ const Contact = () => {
       value: '+92 307 6160255',
       href: 'https://wa.me/923076160255?text=Hi%20Tayyab,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect.',
       icon: MessageCircle,
-      gradient: 'from-green-500 to-emerald-500',
+      iconColor: 'text-green-400',
       external: true,
     },
     {
@@ -27,7 +28,7 @@ const Contact = () => {
       value: '+92 307 6160255',
       href: 'tel:+923076160255',
       icon: Phone,
-      gradient: 'from-purple-500 to-pink-500',
+      iconColor: 'text-blue-400',
       external: false,
     },
   ];
@@ -41,43 +42,46 @@ const Contact = () => {
         </p>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {contactCards.map((card) => {
+          {contactCards.map((card, index) => {
             const Icon = card.icon;
             return (
-              <a
-                key={card.title}
-                href={card.href}
-                target={card.external ? '_blank' : undefined}
-                rel={card.external ? 'noopener noreferrer' : undefined}
-                className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
-              >
-                <div className="mb-6 flex items-center justify-between">
-                  <span className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${card.gradient} text-white shadow-lg`}>
-                    <Icon size={30} />
-                  </span>
-                  <ArrowUpRight className="text-slate-400 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-500" size={24} />
-                </div>
-                <h2 className="mb-2 text-xl font-bold text-slate-950 dark:text-white">{card.title}</h2>
-                <p className="mb-5 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{card.description}</p>
-                <p className="font-semibold text-blue-600 dark:text-blue-400">{card.value}</p>
-              </a>
+              <Reveal key={card.title} delay={index * 100}>
+                <a
+                  href={card.href}
+                  target={card.external ? '_blank' : undefined}
+                  rel={card.external ? 'noopener noreferrer' : undefined}
+                  className="glow-border group rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
+                >
+                  <div className="mb-6 flex items-center justify-between">
+                    <span className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-900 shadow-lg dark:bg-white/10 ${card.iconColor}`}>
+                      <Icon size={30} />
+                    </span>
+                    <ArrowUpRight className="text-slate-400 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-500" size={24} />
+                  </div>
+                  <h2 className="mb-2 text-xl font-bold text-slate-950 dark:text-white">{card.title}</h2>
+                  <p className="mb-5 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{card.description}</p>
+                  <p className="font-semibold text-blue-600 dark:text-blue-400">{card.value}</p>
+                </a>
+              </Reveal>
             );
           })}
         </div>
 
-        <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-300">
-              <MapPin size={28} />
-            </span>
-            <div>
-              <h2 className="text-xl font-bold text-slate-950 dark:text-white">Based in Lahore, Pakistan</h2>
-              <p className="mt-1 text-slate-600 dark:text-gray-300">
-                Available for full stack MERN development, frontend engineering, mobile app work, and product UI improvements.
-              </p>
+        <Reveal delay={contactCards.length * 100}>
+          <div className="glow-border mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-300">
+                <MapPin size={28} />
+              </span>
+              <div>
+                <h2 className="text-xl font-bold text-slate-950 dark:text-white">Based in Lahore, Pakistan</h2>
+                <p className="mt-1 text-slate-600 dark:text-gray-300">
+                  Available for full stack MERN development, frontend engineering, mobile app work, and product UI improvements.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </div>
   );

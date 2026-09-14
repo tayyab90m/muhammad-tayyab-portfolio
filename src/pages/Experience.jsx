@@ -1,53 +1,30 @@
 import React from 'react';
-import { BriefcaseBusiness, CalendarDays, Code2, Layers, Rocket, Sparkles } from 'lucide-react';
+import { BriefcaseBusiness, CalendarDays, Layers, Rocket } from 'lucide-react';
+import Reveal from '../Components/Reveal';
 
 const experiences = [
   {
     role: 'Software Engineer',
-    company: 'Modern Web & Mobile Products',
-    period: '2024 - Present',
+    company: 'Keeyu',
+    period: '2023 - Present',
     icon: Rocket,
-    gradient: 'from-blue-500 to-purple-600',
     points: [
-      'Building scalable React, Next.js, and React Native interfaces for production products.',
-      'Integrating REST APIs, GraphQL, payment flows, analytics, and real-time product features.',
-      'Improving performance, reusable components, and maintainable frontend architecture.',
+      'Build and maintain frontend features with React.js and Next.js, integrating REST APIs and handling complex UI state for responsive, user-friendly interfaces.',
+      'Consume and manage GraphQL queries and mutations on the frontend, and develop backend API endpoints with Node.js and Fastify.',
+      'Work with Next.js SSR and SSG to improve page load performance and SEO, configuring data fetching per content requirements.',
+      'Built and maintain a shared React component library used across multiple features, and collaborate with designers and backend engineers through sprint planning, standups, and code review.',
     ],
   },
   {
-    role: 'Frontend Developer',
-    company: 'E-commerce, Fitness, Sports & SaaS Platforms',
-    period: '2022 - 2024',
+    role: 'Associate Software Engineer',
+    company: 'Eritheia Labs',
+    period: '2022 - 2023',
     icon: Layers,
-    gradient: 'from-cyan-500 to-blue-600',
     points: [
-      'Delivered responsive dashboards, landing pages, checkout flows, and customer-facing modules.',
-      'Converted business requirements into polished UI using Tailwind CSS, Redux, and component-driven patterns.',
-      'Worked closely with backend and QA teams to ship reliable features with clean user journeys.',
-    ],
-  },
-  {
-    role: 'React Native Developer',
-    company: 'Cross-platform Mobile Apps',
-    period: '2022 - Present',
-    icon: Code2,
-    gradient: 'from-emerald-500 to-teal-600',
-    points: [
-      'Developed mobile screens, navigation flows, reusable UI elements, and API-connected features.',
-      'Focused on smooth interactions, consistent design systems, and production-ready mobile UX.',
-      'Handled app state, forms, authentication flows, and data-driven screens.',
-    ],
-  },
-  {
-    role: 'AI-assisted Development',
-    company: 'Cursor, AI Tools & Workflow Automation',
-    period: 'Ongoing',
-    icon: Sparkles,
-    gradient: 'from-fuchsia-500 to-pink-600',
-    points: [
-      'Using AI tools like Cursor, ChatGPT, and workflow assistants to accelerate planning, debugging, and implementation.',
-      'Exploring AI-powered product features, automation ideas, and smarter developer workflows.',
-      'Combining engineering judgment with AI assistance to move faster while keeping code quality high.',
+      'Developed frontend screens and components with React.js and Next.js, integrating REST APIs and keeping UI state in sync with backend data.',
+      'Implemented GraphQL queries on the frontend using Apollo Client, with proper loading and error handling for dynamic content.',
+      'Contributed to Node.js backend services, writing API routes and handlers to support new frontend features and fix QA-reported issues.',
+      'Built React Native screens for mobile features, reusing existing logic and adapting UI components to mobile layouts.',
     ],
   },
 ];
@@ -68,35 +45,36 @@ const Experience = () => {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          {experiences.map((experience) => {
+          {experiences.map((experience, index) => {
             const Icon = experience.icon;
             return (
-              <article
-                key={experience.role}
-                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
-              >
-                <div className={`bg-gradient-to-br ${experience.gradient} p-6 text-white`}>
-                  <div className="mb-8 flex items-center justify-between">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur">
-                      <Icon size={34} />
+              <Reveal key={experience.role} delay={index * 100}>
+                <article
+                  className="glow-border group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
+                >
+                  <div className="bg-slate-900 p-6 text-white dark:bg-slate-950">
+                    <div className="mb-8 flex items-center justify-between">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-blue-400">
+                        <Icon size={34} />
+                      </div>
+                      <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-blue-300">
+                        <CalendarDays size={16} />
+                        {experience.period}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur">
-                      <CalendarDays size={16} />
-                      {experience.period}
-                    </div>
+                    <h2 className="text-2xl font-bold">{experience.role}</h2>
+                    <p className="mt-2 text-white/85">{experience.company}</p>
                   </div>
-                  <h2 className="text-2xl font-bold">{experience.role}</h2>
-                  <p className="mt-2 text-white/85">{experience.company}</p>
-                </div>
-                <div className="space-y-4 p-6">
-                  {experience.points.map((point) => (
-                    <div key={point} className="flex gap-3 text-slate-600 dark:text-gray-300">
-                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
-                      <p className="leading-relaxed">{point}</p>
-                    </div>
-                  ))}
-                </div>
-              </article>
+                  <div className="space-y-4 p-6">
+                    {experience.points.map((point) => (
+                      <div key={point} className="flex gap-3 text-slate-600 dark:text-gray-300">
+                        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
+                        <p className="leading-relaxed">{point}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              </Reveal>
             );
           })}
         </div>

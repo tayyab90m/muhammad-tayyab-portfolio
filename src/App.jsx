@@ -16,7 +16,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className={isDarkMode ? 'dark' : ''}>
-        <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-gradient-to-b dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 dark:text-white">
+        <div className="app-shell min-h-screen text-slate-900 transition-colors duration-300 dark:text-white">
           <Header isDarkMode={isDarkMode} onToggleTheme={() => setIsDarkMode((theme) => !theme)} />
           <main>
             <Routes>

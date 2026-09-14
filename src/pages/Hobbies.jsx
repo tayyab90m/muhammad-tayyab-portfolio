@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart, Wind, Footprints, Dumbbell, Dribbble } from 'lucide-react';
+import Reveal from '../Components/Reveal';
 
 const Hobbies = () => {
   const hobbies = [
@@ -7,25 +8,21 @@ const Hobbies = () => {
       name: 'Badminton',
       description: 'Enjoying competitive matches and improving my skills on the court. Badminton helps me develop quick reflexes, strategic thinking, and maintain cardiovascular fitness while having fun.',
       icon: Wind,
-      gradient: 'from-cyan-500 to-blue-500'
     },
     {
       name: 'Jogging',
       description: 'Early morning runs to stay fit and energized. Running clears my mind, boosts my energy levels, and provides a great opportunity to explore the outdoors while staying healthy.',
       icon: Footprints,
-      gradient: 'from-green-500 to-teal-500'
     },
     {
       name: 'Gym',
       description: 'Regular workouts to maintain strength and fitness. Strength training not only builds physical resilience but also improves mental discipline, focus, and overall well-being.',
       icon: Dumbbell,
-      gradient: 'from-red-500 to-orange-500'
     },
     {
       name: 'Football',
       description: 'Playing football with friends and local teams. Football teaches teamwork, coordination, and provides an excellent cardiovascular workout while building camaraderie with teammates.',
       icon: Dribbble,
-      gradient: 'from-purple-500 to-pink-500'
     }
   ];
 
@@ -47,21 +44,22 @@ const Hobbies = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {hobbies.map((hobby) => {
+          {hobbies.map((hobby, index) => {
             const IconComponent = hobby.icon;
             return (
-              <div
-                key={hobby.name}
-                className="overflow-hidden rounded-3xl border border-slate-200 bg-white text-slate-950 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-black/20"
-              >
-                <div className={`h-48 bg-gradient-to-br ${hobby.gradient} flex items-center justify-center`}>
-                  <IconComponent className="text-white/90" size={80} strokeWidth={1.5} />
+              <Reveal key={hobby.name} delay={index * 90}>
+                <div
+                  className="glow-border overflow-hidden rounded-3xl border border-slate-200 bg-white text-slate-950 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-black/20"
+                >
+                  <div className="h-48 bg-slate-900 flex items-center justify-center dark:bg-slate-950">
+                    <IconComponent className="text-blue-400" size={80} strokeWidth={1.5} />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">{hobby.name}</h3>
+                    <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">{hobby.description}</p>
+                  </div>
                 </div>
-                <div className="p-5">
-                  <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">{hobby.name}</h3>
-                  <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">{hobby.description}</p>
-                </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

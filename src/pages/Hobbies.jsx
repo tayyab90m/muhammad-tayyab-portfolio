@@ -30,7 +30,7 @@ const Hobbies = () => {
     <div className="pt-36 pb-16 md:pt-44">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 mb-6">
-          <Heart className="text-blue-500 dark:text-blue-400" size={44} />
+          <Heart className="text-slate-900 dark:text-white" size={44} />
           <h1 className="text-4xl font-bold text-slate-950 dark:text-white">My Hobbies & Interests</h1>
         </div>
 
@@ -49,13 +49,13 @@ const Hobbies = () => {
             return (
               <Reveal key={hobby.name} delay={index * 90}>
                 <div
-                  className="glow-border overflow-hidden rounded-3xl border border-slate-200 bg-white text-slate-950 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-black/20"
+                  className="glow-border overflow-hidden rounded-3xl border border-[#dbd9d9] bg-white text-slate-950 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-black/20"
                 >
                   <div className="h-48 bg-slate-900 flex items-center justify-center dark:bg-slate-950">
-                    <IconComponent className="text-blue-400" size={80} strokeWidth={1.5} />
+                    <IconComponent className="text-white" size={80} strokeWidth={1.5} />
                   </div>
                   <div className="p-5">
-                    <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3">{hobby.name}</h3>
+                    <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">{hobby.name}</h3>
                     <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">{hobby.description}</p>
                   </div>
                 </div>

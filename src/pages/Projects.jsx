@@ -1,14 +1,14 @@
 import React from 'react';
-import { Briefcase, ShoppingCart, Car, Trophy, Dumbbell, UtensilsCrossed, CreditCard, ClipboardCheck } from 'lucide-react';
+import { Briefcase, Bot, Car, Trophy, Dumbbell, UtensilsCrossed, CreditCard, ClipboardCheck, Scissors } from 'lucide-react';
 import Reveal from '../Components/Reveal';
 
 const Projects = () => {
   const projects = [
     {
-      title: 'Keeyu – Centralized E-commerce Platform',
-      category: 'E-commerce',
-      description: 'A multi-marketplace order management platform that lets businesses track and manage orders from multiple sales channels in one place. Built frontend features with React.js and Next.js, integrated REST APIs to sync order data, and developed backend routes with Node.js and Fastify — including real-time order status updates over WebSocket so the dashboard stays in sync without manual refreshes.',
-      icon: ShoppingCart,
+      title: 'Keeyu – Proactive E-commerce Ops Platform',
+      category: 'AI-Powered Ops',
+      description: 'Keeyu is an AI-agent platform that helps e-commerce brands detect and resolve post-purchase issues — fulfillment, shipping, and returns — before customers ever have to ask "Where is my order?" I built frontend features with React.js and Next.js, integrated REST APIs to sync order data across multiple sales channels, and developed backend routes with Node.js and Fastify — including real-time order status updates over WebSocket so the ops dashboard stays in sync without manual refreshes.',
+      icon: Bot,
       highlights: ['React.js', 'Next.js', 'Node.js & Fastify', 'WebSockets']
     },
     {
@@ -52,6 +52,13 @@ const Projects = () => {
       description: 'Lasso powers your entire checkout flow. From global payment methods to individual consumer insights, get the tools and analytics you need to make better decisions. Supports multiple currencies, fraud detection, and comprehensive analytics dashboard for tracking conversion rates.',
       icon: CreditCard,
       highlights: ['React', 'Fraud Detection', 'Multi-currency']
+    },
+    {
+      title: 'Tailor Manager – Shop Management System',
+      category: 'Retail Management',
+      description: 'A management system built with React and a Node.js/Fastify backend for tailoring businesses to track customer orders, measurements, and delivery timelines in one place. Supports offline-first order entry with local data sync, so shop staff can log orders and update statuses without an internet connection, plus reporting dashboards for revenue, order volume, and turnaround times.',
+      icon: Scissors,
+      highlights: ['React', 'Node.js & Fastify', 'Offline Support', 'Reports']
     }
   ];
 
@@ -59,7 +66,7 @@ const Projects = () => {
     <div className="pt-36 pb-16 md:pt-44">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 mb-6">
-          <Briefcase className="text-blue-500 dark:text-blue-400" size={44} />
+          <Briefcase className="text-slate-900 dark:text-white" size={44} />
           <h1 className="text-4xl font-bold text-slate-950 dark:text-white">Featured Projects</h1>
         </div>
         <p className="text-slate-600 dark:text-gray-300 text-lg mb-12 max-w-3xl">
@@ -71,10 +78,10 @@ const Projects = () => {
             return (
               <Reveal key={project.title} delay={(index % 2) * 100}>
                 <article
-                  className="glow-border overflow-hidden rounded-3xl border border-slate-200 bg-white text-slate-950 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-black/20"
+                  className="glow-border overflow-hidden rounded-3xl border border-[#dbd9d9] bg-white text-slate-950 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-black/20"
                 >
                   <div className="w-full h-56 bg-slate-900 flex items-center justify-center dark:bg-slate-950">
-                    <IconComponent className="text-blue-400" size={100} strokeWidth={1.5} />
+                    <IconComponent className="text-white" size={100} strokeWidth={1.5} />
                   </div>
                   <div className="p-6">
                     <span className="inline-block bg-slate-900 text-white text-xs font-semibold px-3 py-1 rounded-full mb-3 dark:bg-white/10">
@@ -85,7 +92,7 @@ const Projects = () => {
                       {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2 border-t border-slate-200 pt-4 dark:border-gray-700">
+                    <div className="flex flex-wrap gap-2 border-t border-[#dbd9d9] pt-4 dark:border-gray-700">
                       {project.highlights.map((tag) => (
                         <span
                           key={tag}

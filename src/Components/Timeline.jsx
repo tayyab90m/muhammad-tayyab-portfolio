@@ -40,18 +40,18 @@ const Timeline = () => {
                 </p>
 
                 <div className="relative grid gap-6 lg:grid-cols-4">
-                    <div className="absolute left-0 right-0 top-16 hidden h-px bg-gradient-to-r from-blue-500/0 via-blue-500/40 to-blue-500/0 lg:block" />
+                    <div className="absolute left-0 right-0 top-16 hidden h-px bg-gradient-to-r from-slate-900/0 via-slate-900/25 to-slate-900/0 dark:via-white/20 lg:block" />
                     {timelineEvents.map((event, index) => {
                         const Icon = event.icon;
                         return (
                             <Reveal key={event.title} delay={index * 100}>
                                 <article
-                                    className="glow-border relative rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
+                                    className="glow-border relative rounded-3xl border border-[#dbd9d9] bg-white p-6 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
                                 >
-                                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-900 text-blue-400 shadow-lg dark:bg-white/10">
+                                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-lg dark:bg-white/10">
                                         <Icon size={30} />
                                     </div>
-                                    <p className="mb-3 inline-flex rounded-full bg-blue-500/10 px-3 py-1 text-sm font-bold text-blue-600 dark:text-blue-300">
+                                    <p className="mb-3 inline-flex rounded-full bg-slate-900/5 px-3 py-1 text-sm font-bold text-slate-900 dark:bg-white/10 dark:text-white">
                                         {event.year}
                                     </p>
                                     <h3 className="text-xl font-bold text-slate-950 dark:text-white">{event.title}</h3>

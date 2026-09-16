@@ -50,9 +50,9 @@
     from var(--glow-angle),
     transparent 0deg,
     transparent 250deg,
-    #1d4ed8 285deg,
-    #3b82f6 320deg,
-    #93c5fd 345deg,
+    #0f172a 285deg,
+    #334155 320deg,
+    #64748b 345deg,
     transparent 360deg
   );
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -78,9 +78,22 @@
     from var(--glow-angle),
     transparent 0deg,
     transparent 200deg,
-    #1d4ed8 250deg,
-    #3b82f6 300deg,
-    #93c5fd 335deg,
+    #0f172a 250deg,
+    #334155 300deg,
+    #64748b 335deg,
+    transparent 360deg
+  );
+}
+
+.dark .glow-border::before,
+.dark .glow-btn::before {
+  background: conic-gradient(
+    from var(--glow-angle),
+    transparent 0deg,
+    transparent 250deg,
+    #f8fafc 285deg,
+    #cbd5e1 320deg,
+    #64748b 345deg,
     transparent 360deg
   );
 }

@@ -23,7 +23,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="border-t border-slate-200 bg-white/80 text-slate-600 backdrop-blur dark:border-white/10 dark:bg-gray-950/80 dark:text-gray-300">
+    <footer className="border-t border-[#dbd9d9] bg-white/80 text-slate-600 backdrop-blur dark:border-white/10 dark:bg-gray-950/80 dark:text-gray-300">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.4fr_0.8fr_1fr]">
           <div>
@@ -32,7 +32,7 @@ export default function Footer() {
               Software Engineer specializing in React, Next.js, React Native, API integrations,
               MongoDB, and AI-assisted product development.
             </p>
-            <p className="mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400">
+            <p className="mt-4 text-sm font-semibold text-slate-900 dark:text-white">
               Lahore, Pakistan
             </p>
           </div>
@@ -44,7 +44,7 @@ export default function Footer() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+                  className="text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -54,10 +54,10 @@ export default function Footer() {
 
           <div>
             <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-slate-950 dark:text-white">Connect</h3>
-            <a href="mailto:tayyab90m@gmail.com" className="mb-2 block text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400">
+            <a href="mailto:tayyab90m@gmail.com" className="mb-2 block text-sm transition-colors hover:text-slate-900 dark:hover:text-white">
               tayyab90m@gmail.com
             </a>
-            <a href={`https://wa.me/${phoneNumber}`} target="_blank" rel="noopener noreferrer" className="mb-5 block text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400">
+            <a href={`https://wa.me/${phoneNumber}`} target="_blank" rel="noopener noreferrer" className="mb-5 block text-sm transition-colors hover:text-slate-900 dark:hover:text-white">
               WhatsApp: +92 307 6160255
             </a>
             <div className="flex flex-wrap gap-4">
@@ -69,7 +69,7 @@ export default function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 transition-colors hover:bg-blue-500 hover:text-white dark:bg-white/10 dark:hover:bg-blue-500"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 transition-colors hover:bg-slate-900 hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-slate-900"
                     aria-label={link.label}
                   >
                     <Icon size={20} />
@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-slate-200 pt-6 text-center text-sm dark:border-white/10">
+        <div className="mt-10 border-t border-[#dbd9d9] pt-6 text-center text-sm dark:border-white/10">
           © 2026 - Muhammad Tayyab. All rights reserved.
         </div>
       </div>

@@ -1,7 +1,8 @@
 import React from 'react';
-import { ArrowRight, Code2, Database, Download, MonitorSmartphone, Rocket, Sparkles, User, Zap } from 'lucide-react';
+import { ArrowRight, Code2, Database, FileText, MonitorSmartphone, Rocket, Sparkles, User, Zap } from 'lucide-react';
 import Timeline from '../Components/Timeline';
 import Reveal from '../Components/Reveal';
+import { viewResumePdf } from '../utils/generateResumePdf';
 
 const Home = () => {
 
@@ -21,7 +22,7 @@ const Home = () => {
   const aboutHighlights = [
     'Build full-stack MERN applications with clean React interfaces and reliable Node.js APIs.',
     'Create reusable components, API-connected dashboards, and mobile-friendly user experiences.',
-    'Use MongoDB, Express, React, Node.js, and AI-assisted tools to ship practical product features.',
+    'Pair AI coding tools and models with solid engineering judgment to plan, build, and ship features up to 10x faster.',
   ];
   const skillGroups = [
     {
@@ -37,33 +38,35 @@ const Home = () => {
     {
       title: 'Tools & Workflow',
       icon: Sparkles,
-      skills: ['Git & GitHub', 'Postman', 'Vercel', 'Netlify', 'Cursor', 'Windsurf', 'Agile/Scrum', 'Code Review'],
+      skills: ['Claude Code', 'Cursor', 'Antigravity', 'Windsurf', 'DeepSeek', 'Grok', 'Git & GitHub', 'Postman', 'Vercel', 'Netlify', 'Agile/Scrum', 'Code Review'],
     },
   ];
 
   return (
     <div className="pt-20">
       <section className="relative overflow-hidden px-4 py-24 md:py-32">
-        <div className="absolute -left-24 top-24 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="absolute -left-24 top-24 h-80 w-80 rounded-full bg-slate-300/30 blur-3xl dark:bg-slate-600/10" />
         <div className="absolute right-0 top-40 h-80 w-80 rounded-full bg-slate-400/20 blur-3xl dark:bg-slate-500/10" />
-        <div className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-blue-400/10 blur-3xl" />
+        <div className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-slate-300/20 blur-3xl dark:bg-slate-700/10" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-600 dark:text-blue-300">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dbd9d9]/20 bg-slate-900/5 px-4 py-2 text-sm font-semibold text-slate-900 dark:border-white/15 dark:bg-white/10 dark:text-white">
               <Sparkles size={16} />
-              Full Stack Developer - Node.js, React, Next.js and REST APIs
+              Full Stack Engineer | Web and Mobile Apps | AI Assisted Development
             </span>
             <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-7xl">
               I build fast, clean, and scalable digital products.
             </h1>
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-600 dark:text-gray-300">
-              I am Muhammad Tayyab, a software engineer who turns product ideas into reliable web
-              and mobile experiences using React, Next.js, React Native, APIs, MongoDB, and AI-assisted tools.
+              I'm Muhammad Tayyab, a software engineer focused on one thing: delivering working
+              products fast. By combining solid engineering experience with AI tools like Claude
+              Code, Cursor, Antigravity, and Grok, I turn ideas into reliable, launch ready software
+              in a fraction of the usual time, without compromising on quality.
             </p>
             <div className="mb-8 grid max-w-2xl grid-cols-3 gap-3">
               {impactStats.map((stat, index) => (
                 <Reveal key={stat.label} delay={index * 80}>
-                  <div className="glow-border rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-lg shadow-slate-200/50 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
+                  <div className="glow-border rounded-2xl border border-[#dbd9d9] bg-white/80 p-4 shadow-lg shadow-slate-200/50 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
                     <p className="text-2xl font-extrabold text-slate-950 dark:text-white">{stat.value}</p>
                     <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-gray-400">{stat.label}</p>
                   </div>
@@ -73,35 +76,35 @@ const Home = () => {
             <div className="flex flex-col gap-4 sm:flex-row">
               <a
                 href="/projects"
-                className="glow-btn inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-semibold text-white shadow-xl shadow-blue-600/25 transition-transform hover:-translate-y-0.5"
+                className="glow-btn inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 font-semibold text-white shadow-xl shadow-slate-900/25 transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-slate-900 dark:shadow-white/10"
               >
                 View Projects
                 <ArrowRight size={18} />
               </a>
               <a
                 href="/contact"
-                className="glow-btn inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-white/15 dark:text-white dark:hover:bg-white/10"
+                className="glow-btn inline-flex items-center justify-center rounded-full border border-[#dbd9d9] px-6 py-3 font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-white/15 dark:text-white dark:hover:bg-white/10"
               >
                 Contact Me
               </a>
-              <a
-                href="/resume/Muhammad_Tayyab_Resume.pdf"
-                download
-                className="glow-btn inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-white/15 dark:text-white dark:hover:bg-white/10"
+              <button
+                type="button"
+                onClick={viewResumePdf}
+                className="glow-btn inline-flex items-center justify-center gap-2 rounded-full border border-[#dbd9d9] px-6 py-3 font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-white/15 dark:text-white dark:hover:bg-white/10"
               >
-                <Download size={18} />
+                <FileText size={18} />
                 Resume
-              </a>
+              </button>
             </div>
           </div>
 
-          <div className="glow-border rounded-[2rem] border border-slate-200 bg-white/80 p-6 shadow-2xl shadow-slate-200/70 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-black/30">
+          <div className="glow-border rounded-[2rem] border border-[#dbd9d9] bg-white/80 p-6 shadow-2xl shadow-slate-200/70 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-black/30">
             <div className="rounded-[1.5rem] bg-slate-900 p-6 text-white">
               <div className="mb-10 flex items-center justify-between">
-                <div className="rounded-2xl bg-white/10 p-4 text-blue-400">
+                <div className="rounded-2xl bg-white/10 p-4 text-white">
                   <Rocket size={38} />
                 </div>
-                <span className="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-blue-300">
+                <span className="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">
                   {experience}+ years
                 </span>
               </div>
@@ -123,34 +126,34 @@ const Home = () => {
       </section>
       <section className="px-4 py-20" id="about">
         <div className="mx-auto grid max-w-7xl items-start gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="glow-border rounded-[2rem] border border-slate-200 bg-white p-7 shadow-2xl shadow-slate-200/60 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
+          <div className="glow-border rounded-[2rem] border border-[#dbd9d9] bg-white p-7 shadow-2xl shadow-slate-200/60 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
             <div className="mb-6 flex items-center gap-3">
-              <span className="rounded-2xl bg-blue-500/10 p-3 text-blue-600 dark:text-blue-300">
+              <span className="rounded-2xl bg-slate-900/5 p-3 text-slate-900 dark:bg-white/10 dark:text-white">
                 <User size={30} />
               </span>
               <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-300">About Me</p>
+                <p className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">About Me</p>
                 <h2 className="text-3xl font-bold text-slate-950 dark:text-white">Full Stack MERN Developer</h2>
               </div>
             </div>
             <p className="text-lg leading-relaxed text-slate-600 dark:text-gray-300">
-              I am a Full Stack MERN Stack Developer with <span className="font-semibold text-blue-600 dark:text-blue-400">{experience} years</span> of
+              I am a Full Stack MERN Stack Developer with <span className="font-semibold text-slate-900 dark:text-white">{experience} years</span> of
               experience building modern web and mobile products across e-commerce, fitness, sports,
               dashboards, and payment-related workflows. I enjoy turning complex requirements into clean
               interfaces, scalable APIs, reusable components, and smooth user experiences.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-slate-600 dark:text-gray-300">
-              My core stack includes MongoDB, Express.js, React, Node.js, Next.js, and React Native. I focus on
-              writing maintainable code, improving performance, solving UX gaps, and using modern tools like
-              Cursor and AI assistants wisely to deliver software that creates real value.
+              My core stack includes MongoDB, Express.js, React, Node.js, Next.js, and React Native. I also
+              lean on AI-assisted development throughout my workflow — from planning to shipping — to move
+              up to 10x faster without sacrificing code quality or maintainability.
             </p>
            
           </div>
           <div className="grid gap-3">
             {aboutHighlights.map((highlight, index) => (
               <Reveal key={highlight} delay={index * 80}>
-                <div className="glow-border flex gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-200/50 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-sm font-bold text-blue-600 dark:text-blue-300">
+                <div className="glow-border flex gap-3 rounded-2xl border border-[#dbd9d9] bg-white p-4 shadow-lg shadow-slate-200/50 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-900/5 text-sm font-bold text-slate-900 dark:bg-white/10 dark:text-white">
                     0{index + 1}
                   </span>
                   <p className="text-sm leading-relaxed text-slate-600 dark:text-gray-300">{highlight}</p>
@@ -158,7 +161,7 @@ const Home = () => {
               </Reveal>
             ))}
             <Reveal delay={aboutHighlights.length * 80}>
-              <div className="rounded-2xl bg-blue-600 p-5 text-white shadow-xl shadow-blue-500/20">
+              <div className="rounded-2xl bg-slate-900 p-5 text-white shadow-xl shadow-slate-900/20">
                 <div className="mb-2 flex items-center gap-3">
                   <Zap size={22} />
                   <h3 className="text-lg font-bold">Engineering Focus</h3>
@@ -174,7 +177,7 @@ const Home = () => {
       <section className="px-4 py-20 bg-white/70 dark:bg-gray-800/50">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center gap-2 mb-8">
-            <Code2 className="text-blue-500 dark:text-blue-400" size={44} />
+            <Code2 className="text-slate-900 dark:text-white" size={44} />
             <h2 className="text-3xl font-bold text-slate-950 dark:text-white">Core Skills</h2>
           </div>
           <div className="grid gap-6 lg:grid-cols-3">
@@ -182,9 +185,9 @@ const Home = () => {
               const Icon = group.icon;
               return (
                 <Reveal key={group.title} delay={index * 100}>
-                  <div className="glow-border rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 transition-transform duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
+                  <div className="glow-border rounded-3xl border border-[#dbd9d9] bg-white p-6 shadow-xl shadow-slate-200/60 transition-transform duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
                     <div className="mb-5 flex items-center gap-3">
-                      <span className="rounded-2xl bg-blue-500/10 p-3 text-blue-600 dark:text-blue-300">
+                      <span className="rounded-2xl bg-slate-900/5 p-3 text-slate-900 dark:bg-white/10 dark:text-white">
                         <Icon size={26} />
                       </span>
                       <h3 className="text-xl font-bold text-slate-950 dark:text-white">{group.title}</h3>

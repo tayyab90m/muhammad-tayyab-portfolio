@@ -35,7 +35,7 @@ const Experience = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 max-w-3xl">
           <div className="mb-4 flex items-center gap-3">
-            <BriefcaseBusiness className="text-blue-500 dark:text-blue-400" size={44} />
+            <BriefcaseBusiness className="text-slate-900 dark:text-white" size={44} />
             <h1 className="text-4xl font-bold text-slate-950 dark:text-white">Experience</h1>
           </div>
           <p className="text-lg leading-relaxed text-slate-600 dark:text-gray-300">
@@ -50,14 +50,14 @@ const Experience = () => {
             return (
               <Reveal key={experience.role} delay={index * 100}>
                 <article
-                  className="glow-border group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
+                  className="glow-border group overflow-hidden rounded-3xl border border-[#dbd9d9] bg-white shadow-xl shadow-slate-200/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
                 >
                   <div className="bg-slate-900 p-6 text-white dark:bg-slate-950">
                     <div className="mb-8 flex items-center justify-between">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-blue-400">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white">
                         <Icon size={34} />
                       </div>
-                      <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-blue-300">
+                      <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">
                         <CalendarDays size={16} />
                         {experience.period}
                       </div>
@@ -68,7 +68,7 @@ const Experience = () => {
                   <div className="space-y-4 p-6">
                     {experience.points.map((point) => (
                       <div key={point} className="flex gap-3 text-slate-600 dark:text-gray-300">
-                        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
+                        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-slate-900 dark:bg-white" />
                         <p className="leading-relaxed">{point}</p>
                       </div>
                     ))}

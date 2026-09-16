@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 import resumeData from '../data/resumeData';
+import projectsData from '../data/projectsData';
 
 const MARGIN = 48;
 const PAGE_WIDTH = 595.28; // A4 width in pt
@@ -120,15 +121,15 @@ const buildResumeDocument = () => {
 
   // Projects
   addSectionTitle('Key Projects');
-  resumeData.projects.forEach((project, index) => {
+  projectsData.forEach((project, index) => {
     ensureSpace(14);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(10.5);
     doc.setTextColor(15, 23, 42);
     doc.text(project.title, MARGIN, y);
     y += 13;
-    project.points.forEach((point) => addBullet(point));
-    if (index < resumeData.projects.length - 1) y += 6;
+    project.resumePoints.forEach((point) => addBullet(point));
+    if (index < projectsData.length - 1) y += 6;
   });
 
   // Skills

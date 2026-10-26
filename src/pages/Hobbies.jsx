@@ -64,7 +64,7 @@ const Hobbies = () => {
                     <span className="font-display text-sm font-bold opacity-50">0{index + 1}</span>
                   </div>
                   <div>
-                    <h2 className={`font-display font-extrabold uppercase leading-none tracking-tight ${isFeature ? 'text-4xl sm:text-5xl xl:text-6xl' : 'text-3xl'}`}>
+                    <h2 className={`font-display font-extrabold uppercase leading-none tracking-tight ${isFeature ? 'text-4xl xl:text-5xl' : 'text-2xl'}`}>
                       {hobby.name}
                     </h2>
                     <p className={`mt-4 text-sm leading-relaxed opacity-75 ${isFeature ? 'max-w-md md:text-base' : 'line-clamp-3'}`}>

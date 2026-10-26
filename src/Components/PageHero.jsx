@@ -12,7 +12,7 @@ const PageHero = ({ label, title, count, children }) => (
           {label}
         </p>
       </Reveal>
-      <h1 className="font-display text-[clamp(2.6rem,9vw,7.5rem)] font-extrabold uppercase leading-[0.86] tracking-tighter">
+      <h1 className="font-display text-[clamp(2.4rem,7.5vw,6rem)] font-extrabold uppercase leading-[0.86] tracking-tighter">
         <SplitText text={title} />
         {count && (
           <sup className="ml-2 align-super font-display text-[0.22em] font-semibold tracking-normal text-accent">

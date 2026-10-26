@@ -9,8 +9,8 @@ import Hobbies from './pages/Hobbies';
 import Home from './pages/Home';
 import Experience from './pages/Experience';
 import FloatingWhatsApp from './Components/FloatingWhatsApp';
-import Cursor from './Components/Cursor';
 import ScrollProgress from './Components/ScrollProgress';
+import Background from './Components/Background';
 
 // Keyed by route so every navigation starts at the top and replays the enter animation.
 const AnimatedRoutes = () => {
@@ -43,8 +43,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <Background />
       <ScrollProgress />
-      <Cursor />
       <Header isDarkMode={isDarkMode} onToggleTheme={() => setIsDarkMode((theme) => !theme)} />
       <AnimatedRoutes />
       <FloatingWhatsApp />

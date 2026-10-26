@@ -30,7 +30,7 @@ export default function Footer() {
         <Marquee
           items={["Let's work together", 'Start a project']}
           speed={28}
-          itemClassName="font-display text-5xl font-extrabold uppercase tracking-tight md:text-7xl md:leading-none"
+          itemClassName="font-display text-4xl font-extrabold uppercase tracking-tight md:text-6xl md:leading-none"
         />
       </Link>
 

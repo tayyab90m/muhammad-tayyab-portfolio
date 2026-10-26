@@ -4,24 +4,28 @@
 
 /* Theme tokens (RGB triplets, consumed by tailwind.config.js). */
 :root {
-  --paper: 238 242 251;
-  --surface: 225 231 245;
-  --ink: 11 16 32;
-  --muted: 82 92 118;
-  --line: 11 16 32;
-  --accent: 59 91 219;
+  --paper: 246 241 230;
+  --surface: 235 227 209;
+  --ink: 6 17 15;
+  --muted: 88 104 96;
+  --line: 6 17 15;
+  --accent: 150 116 40;
   --on-accent: 255 255 255;
+  --glow-green: 13 74 59 / 0.14;
+  --glow-gold: 150 116 40 / 0.14;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark {
-  --paper: 11 16 32;
-  --surface: 21 29 52;
-  --ink: 232 236 248;
-  --muted: 148 160 190;
-  --line: 232 236 248;
-  --accent: 125 211 252;
-  --on-accent: 11 16 32;
+  --paper: 6 17 15;
+  --surface: 13 42 34;
+  --ink: 243 240 231;
+  --muted: 155 168 160;
+  --line: 216 181 107;
+  --accent: 216 181 107;
+  --on-accent: 6 17 15;
+  --glow-green: 13 74 59 / 0.6;
+  --glow-gold: 216 181 107 / 0.12;
 }
 
 @layer base {
@@ -48,6 +52,75 @@
     @apply inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium;
     box-shadow: inset 0 0 0 1px rgb(var(--line) / 0.2);
   }
+}
+
+/* Ambient background (Components/Background.jsx). */
+.bg-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.bg-glow-a {
+  top: -15vh;
+  right: -10vw;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(circle, rgb(var(--glow-green)) 0%, transparent 70%);
+  animation: glow-drift-a 28s ease-in-out infinite alternate;
+}
+
+.bg-glow-b {
+  top: 20vh;
+  right: 18vw;
+  width: 26vw;
+  height: 26vw;
+  max-width: 420px;
+  max-height: 420px;
+  background: radial-gradient(circle, rgb(var(--glow-gold)) 0%, transparent 70%);
+  animation: glow-drift-b 22s ease-in-out infinite alternate;
+}
+
+.bg-glow-c {
+  bottom: -20vh;
+  left: -15vw;
+  width: 55vw;
+  height: 55vw;
+  max-width: 800px;
+  max-height: 800px;
+  background: radial-gradient(circle, rgb(var(--glow-green)) 0%, transparent 70%);
+  opacity: 0.7;
+  animation: glow-drift-c 34s ease-in-out infinite alternate;
+}
+
+@keyframes glow-drift-a {
+  to { transform: translate(-8vw, 10vh) scale(1.1); }
+}
+
+@keyframes glow-drift-b {
+  to { transform: translate(6vw, 8vh) scale(0.85); }
+}
+
+@keyframes glow-drift-c {
+  to { transform: translate(10vw, -12vh) scale(1.15); }
+}
+
+.bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgb(var(--ink) / 0.09) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 35%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 35%, #000 20%, transparent 75%);
+}
+
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 85% 75% at 50% 45%, transparent 55%, rgb(var(--paper) / 0.75) 100%);
 }
 
 /* Film-grain overlay for a printed, editorial texture. */
@@ -270,36 +343,6 @@ body::after {
 
 .menu-open .menu-link {
   transform: none;
-}
-
-/* Custom cursor (Components/Cursor.jsx), only on fine pointers. */
-.cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 70;
-  pointer-events: none;
-  mix-blend-mode: difference;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.cursor.cursor-visible {
-  opacity: 1;
-}
-
-.cursor span {
-  display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 9999px;
-  background: #fff;
-  transform: translate(-50%, -50%);
-  transition: transform 0.4s var(--ease-out);
-}
-
-.cursor.cursor-hover span {
-  transform: translate(-50%, -50%) scale(4);
 }
 
 .whatsapp-ray {

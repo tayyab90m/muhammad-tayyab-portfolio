@@ -24,14 +24,14 @@ const ProjectStack = ({ projects }) => (
           <div className="grid gap-10 p-7 sm:p-10 md:min-h-[520px] md:grid-cols-[1.4fr_1fr] md:p-14">
             <div className="flex flex-col">
               <div className="mb-10 flex items-center justify-between gap-4">
-                <span className="font-display text-5xl font-extrabold leading-none opacity-30 md:text-6xl">
+                <span className="font-display text-4xl font-extrabold leading-none opacity-30 md:text-5xl">
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <span className={`rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider ${tone.badge}`}>
                   {project.category}
                 </span>
               </div>
-              <h3 className="font-display text-3xl font-extrabold uppercase leading-[0.95] tracking-tight md:text-5xl">
+              <h3 className="font-display text-2xl font-extrabold uppercase leading-[0.95] tracking-tight md:text-4xl">
                 {name}
               </h3>
               {subtitle && <p className="mt-3 font-display text-lg font-medium opacity-70 md:text-xl">{subtitle}</p>}

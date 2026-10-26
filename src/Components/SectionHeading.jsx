@@ -15,7 +15,7 @@ const SectionHeading = ({ index, label, title, children, aside }) => (
         <SplitText
           as="h2"
           text={title}
-          className="block font-display text-4xl font-extrabold uppercase leading-[0.95] tracking-tight md:text-5xl lg:text-6xl"
+          className="block font-display text-3xl font-extrabold uppercase leading-[0.95] tracking-tight md:text-4xl lg:text-5xl"
         />
         {children && (
           <Reveal delay={200}>

@@ -61,13 +61,13 @@ const Home = () => {
             </div>
           </Reveal>
 
-          <h1 className="font-display text-[clamp(2.8rem,11vw,10.5rem)] font-extrabold uppercase leading-[0.82] tracking-tighter">
+          <h1 className="relative font-display text-[clamp(2.4rem,9vw,8rem)] font-extrabold uppercase leading-[0.88] tracking-tighter">
             <SplitText text="Muhammad" className="block" />
-            <span className="flex items-end justify-between gap-6">
+            <span className="block">
               <SplitText text="Tayyab" delay={250} />
               <a
                 href="#about"
-                className="group relative mb-[0.08em] hidden h-28 w-28 shrink-0 lg:h-36 lg:w-36 items-center justify-center sm:flex"
+                className="group absolute bottom-0 right-0 hidden h-28 w-28 items-center justify-center sm:flex lg:h-36 lg:w-36"
                 aria-label="Scroll to about section"
               >
                 <svg viewBox="0 0 200 200" className="spin-slow absolute inset-0 h-full w-full">
@@ -101,7 +101,7 @@ const Home = () => {
                   {impactStats.map((stat) => (
                     <div key={stat.label} className="flex flex-col px-4 first:pl-0 last:pr-0 md:px-8">
                       <dt className="order-2 mt-1 text-xs font-semibold uppercase tracking-wider text-muted">{stat.label}</dt>
-                      <dd className="font-display text-3xl font-extrabold md:text-5xl">
+                      <dd className="font-display text-3xl font-extrabold md:text-4xl">
                         <CountUp value={stat.value} suffix={stat.suffix} />
                       </dd>
                     </div>
@@ -134,7 +134,7 @@ const Home = () => {
             items={marqueeSkills}
             speed={35}
             separator={<span className="text-on-accent/40">✦</span>}
-            itemClassName="font-display text-2xl font-extrabold uppercase tracking-tight md:text-4xl"
+            itemClassName="font-display text-xl font-extrabold uppercase tracking-tight md:text-3xl"
           />
         </div>
         <div className="-mx-4 -mt-3 rotate-1 bg-ink py-4 text-paper md:py-5">
@@ -142,7 +142,7 @@ const Home = () => {
             items={marqueeTraits}
             speed={40}
             reverse
-            itemClassName="font-display text-lg font-bold uppercase tracking-tight md:text-2xl"
+            itemClassName="font-display text-base font-bold uppercase tracking-tight md:text-xl"
           />
         </div>
       </section>
@@ -151,7 +151,7 @@ const Home = () => {
         <div className="shell">
           <SectionHeading index="01" label="About" title="Who I am" />
           <ScrollHighlight
-            className="font-display text-2xl font-semibold leading-[1.2] tracking-tight md:text-4xl lg:text-[2.75rem]"
+            className="font-display text-xl font-semibold leading-[1.3] tracking-tight md:text-3xl lg:text-4xl"
             text={`I'm a full stack MERN engineer with ${years}+ years of building web and mobile products across e-commerce, fitness, sports, dashboards and payments — pairing solid engineering with AI-assisted workflows to ship up to 10x faster, without cutting corners.`}
           />
           <div className="mt-20 grid gap-10 md:grid-cols-4">
@@ -184,7 +184,7 @@ const Home = () => {
               <Reveal key={group.title} delay={index * 100}>
                 <div className="fill-row grid gap-6 border-t border-line/15 px-2 py-10 last:border-b md:grid-cols-[100px_1fr_1.3fr] md:items-center md:px-6">
                   <span className="font-display text-lg font-bold text-muted">0{index + 1}</span>
-                  <h3 className="font-display text-3xl font-extrabold uppercase leading-none tracking-tight md:text-4xl">{group.title}</h3>
+                  <h3 className="font-display text-2xl font-extrabold uppercase leading-none tracking-tight md:text-3xl">{group.title}</h3>
                   <div className="flex flex-wrap gap-2">
                     {group.skills.map((skill) => (
                       <span key={skill} className="pill">{skill}</span>

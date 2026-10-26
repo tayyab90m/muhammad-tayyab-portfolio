@@ -62,7 +62,7 @@ const Experience = () => {
                       <CalendarDays size={15} />
                       {experience.period}
                     </p>
-                    <h2 className="mt-5 font-display text-4xl font-extrabold uppercase leading-[0.95] tracking-tight md:text-5xl">
+                    <h2 className="mt-5 font-display text-3xl font-extrabold uppercase leading-[0.95] tracking-tight md:text-4xl">
                       {experience.company}
                     </h2>
                     <p className="mt-3 text-xl text-muted">{experience.role}</p>

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Mail, Instagram, Facebook, MessageSquareDot } from 'lucide-react';
+import { ArrowUp, ArrowUpRight } from 'lucide-react';
+import Marquee from './Marquee';
+import RollText from './RollText';
+import LocalTime from './LocalTime';
 
 export default function Footer() {
 
@@ -14,74 +17,78 @@ export default function Footer() {
     { path: '/contact', label: 'Contact' },
   ];
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/tayyab90m', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/muhammad-tayyab-31b955222', label: 'LinkedIn' },
-    { icon: Instagram, href: 'https://www.instagram.com/tayyab90m?igsh=MXVuemo4djA0aTNoNg==', label: 'Instagram' },
-    { icon: Facebook, href: 'https://www.facebook.com/share/12Fr1ZdTfLj/', label: 'Facebook' },
-    { icon: MessageSquareDot, href: `https://wa.me/${phoneNumber}`, label: 'whatsapp' },
-    { icon: Mail, href: 'mailto:tayyab90m@gmail.com', label: 'Email' },
+    { href: 'https://github.com/tayyab90m', label: 'GitHub' },
+    { href: 'https://www.linkedin.com/in/muhammad-tayyab-31b955222', label: 'LinkedIn' },
+    { href: 'https://www.instagram.com/tayyab90m?igsh=MXVuemo4djA0aTNoNg==', label: 'Instagram' },
+    { href: 'https://www.facebook.com/share/12Fr1ZdTfLj/', label: 'Facebook' },
+    { href: `https://wa.me/${phoneNumber}`, label: 'WhatsApp' },
   ];
 
   return (
-    <footer className="border-t border-[#dbd9d9] bg-white/80 text-slate-600 backdrop-blur dark:border-white/10 dark:bg-gray-950/80 dark:text-gray-300">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_0.8fr_1fr]">
+    <footer className="overflow-hidden rounded-t-[2.5rem] bg-ink text-paper">
+      <Link to="/contact" className="block border-b border-paper/15 py-10 transition-colors hover:text-accent md:py-14" aria-label="Let's work together — go to contact page">
+        <Marquee
+          items={["Let's work together", 'Start a project']}
+          speed={28}
+          itemClassName="font-display text-5xl font-extrabold uppercase tracking-tight md:text-7xl md:leading-none"
+        />
+      </Link>
+
+      <div className="shell py-14">
+        <div className="grid gap-12 md:grid-cols-[1.5fr_0.8fr_0.8fr]">
           <div>
-            <h2 className="mb-3 text-2xl font-bold text-slate-950 dark:text-white">Muhammad Tayyab</h2>
-            <p className="max-w-md text-sm leading-relaxed">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-paper/50">Say hello</p>
+            <a
+              href="mailto:tayyab90m@gmail.com"
+              className="link-underline break-words font-display text-2xl font-bold sm:text-3xl lg:text-4xl"
+            >
+              tayyab90m@gmail.com
+            </a>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-paper/60">
               Software Engineer specializing in React, Next.js, React Native, API integrations,
               MongoDB, and AI-assisted product development.
             </p>
-            <p className="mt-4 text-sm font-semibold text-slate-900 dark:text-white">
-              Lahore, Pakistan
-            </p>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-slate-950 dark:text-white">Explore</h3>
-            <div className="grid grid-cols-2 gap-3">
+            <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-paper/50">Explore</h3>
+            <ul className="space-y-2">
               {footerLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className="text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-white"
-                >
-                  {link.label}
-                </Link>
+                <li key={link.path}>
+                  <Link to={link.path} className="group text-lg font-medium">
+                    <RollText>{link.label}</RollText>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-slate-950 dark:text-white">Connect</h3>
-            <a href="mailto:tayyab90m@gmail.com" className="mb-2 block text-sm transition-colors hover:text-slate-900 dark:hover:text-white">
-              tayyab90m@gmail.com
-            </a>
-            <a href={`https://wa.me/${phoneNumber}`} target="_blank" rel="noopener noreferrer" className="mb-5 block text-sm transition-colors hover:text-slate-900 dark:hover:text-white">
-              WhatsApp: +92 307 6160255
-            </a>
-            <div className="flex flex-wrap gap-4">
-              {socialLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 transition-colors hover:bg-slate-900 hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-slate-900"
-                    aria-label={link.label}
-                  >
-                    <Icon size={20} />
+            <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-paper/50">Connect</h3>
+            <ul className="space-y-2">
+              {socialLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-1 text-lg font-medium">
+                    <RollText>{link.label}</RollText>
+                    <ArrowUpRight size={16} className="text-accent transition-transform duration-500 group-hover:rotate-45" />
                   </a>
-                );
-              })}
-            </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-[#dbd9d9] pt-6 text-center text-sm dark:border-white/10">
-          © 2026 - Muhammad Tayyab. All rights reserved.
+        <div className="mt-14 flex flex-col gap-4 border-t border-paper/15 pt-6 text-sm text-paper/60 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 Muhammad Tayyab. All rights reserved.</p>
+          <p>Lahore, Pakistan · <LocalTime /></p>
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="group inline-flex items-center gap-2 font-semibold uppercase tracking-wider text-paper"
+          >
+            <RollText>Back to top</RollText>
+            <ArrowUp size={16} className="transition-transform duration-500 group-hover:-translate-y-1" />
+          </button>
         </div>
       </div>
     </footer>

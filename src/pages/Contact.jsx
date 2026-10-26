@@ -1,16 +1,17 @@
 import React from 'react';
-import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { ArrowUpRight, Mail, MessageCircle, Phone } from 'lucide-react';
 import Reveal from '../Components/Reveal';
+import PageHero from '../Components/PageHero';
+import LocalTime from '../Components/LocalTime';
 
 const Contact = () => {
-  const contactCards = [
+  const contactRows = [
     {
-      title: 'Send an Email',
+      title: 'Send an email',
       description: 'Open your email app with a ready draft and share your project details.',
       value: 'tayyab90m@gmail.com',
       href: 'mailto:tayyab90m@gmail.com?subject=Portfolio%20Contact&body=Hi%20Tayyab,%0D%0A%0D%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20connect.',
       icon: Mail,
-      iconColor: 'text-white',
       external: false,
     },
     {
@@ -19,71 +20,81 @@ const Contact = () => {
       value: '+92 307 6160255',
       href: 'https://wa.me/923076160255?text=Hi%20Tayyab,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect.',
       icon: MessageCircle,
-      iconColor: 'text-green-400',
       external: true,
     },
     {
-      title: 'Call Directly',
+      title: 'Call directly',
       description: 'Prefer a quick call? Tap to call from your phone or supported device.',
       value: '+92 307 6160255',
       href: 'tel:+923076160255',
       icon: Phone,
-      iconColor: 'text-white',
       external: false,
     },
   ];
+  const details = [
+    { label: 'Based in', value: 'Lahore, Pakistan' },
+    { label: 'Local time', value: <LocalTime /> },
+    { label: 'Open to', value: 'Full stack, frontend & mobile work' },
+  ];
 
   return (
-    <div className="pt-36 pb-16 md:pt-44">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold mb-4 text-center text-slate-950 dark:text-white">Get in Touch</h1>
-        <p className="mx-auto mb-12 max-w-2xl text-center text-lg text-slate-600 dark:text-gray-300">
-          Have a product idea, web app, mobile screen, or frontend challenge? Choose the easiest way to reach me directly.
+    <>
+      <PageHero label="Contact" title="Let's talk">
+        <p>
+          Have a product idea, web app, mobile screen, or frontend challenge? Pick whichever way is easiest
+          and reach me directly.
         </p>
+        <a
+          href={contactRows[0].href}
+          className="link-underline self-start break-all font-display text-2xl font-bold text-ink md:text-3xl"
+        >
+          tayyab90m@gmail.com
+        </a>
+      </PageHero>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {contactCards.map((card, index) => {
-            const Icon = card.icon;
+      <section className="pb-16">
+        <div className="shell">
+          {contactRows.map((row, index) => {
+            const Icon = row.icon;
             return (
-              <Reveal key={card.title} delay={index * 100}>
+              <Reveal key={row.title} delay={index * 100}>
                 <a
-                  href={card.href}
-                  target={card.external ? '_blank' : undefined}
-                  rel={card.external ? 'noopener noreferrer' : undefined}
-                  className="glow-border group rounded-3xl border border-[#dbd9d9] bg-white p-6 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
+                  href={row.href}
+                  target={row.external ? '_blank' : undefined}
+                  rel={row.external ? 'noopener noreferrer' : undefined}
+                  className="fill-row group grid items-center gap-4 border-t border-line/15 px-2 py-10 last:border-b md:grid-cols-[80px_1.2fr_1fr_auto] md:gap-8 md:px-6"
                 >
-                  <div className="mb-6 flex items-center justify-between">
-                    <span className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-900 shadow-lg dark:bg-white/10 ${card.iconColor}`}>
-                      <Icon size={30} />
-                    </span>
-                    <ArrowUpRight className="text-slate-400 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-slate-900 dark:group-hover:text-white" size={24} />
+                  <Icon size={32} strokeWidth={1.5} className="text-accent transition-colors group-hover:text-on-accent" />
+                  <div>
+                    <h2 className="font-display text-3xl font-extrabold uppercase leading-none tracking-tight xl:text-4xl">
+                      {row.title}
+                    </h2>
+                    <p className="mt-3 text-sm text-muted">{row.description}</p>
                   </div>
-                  <h2 className="mb-2 text-xl font-bold text-slate-950 dark:text-white">{card.title}</h2>
-                  <p className="mb-5 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{card.description}</p>
-                  <p className="font-semibold text-slate-900 dark:text-white">{card.value}</p>
+                  <p className="font-display text-lg font-semibold md:text-xl">{row.value}</p>
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full ring-1 ring-inset ring-line/20 transition-transform duration-500 group-hover:rotate-45 group-hover:bg-on-accent group-hover:text-accent">
+                    <ArrowUpRight size={24} />
+                  </span>
                 </a>
               </Reveal>
             );
           })}
         </div>
+      </section>
 
-        <Reveal delay={contactCards.length * 100}>
-          <div className="glow-border mt-8 rounded-3xl border border-[#dbd9d9] bg-white p-6 shadow-xl shadow-slate-200/60 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-900/5 text-slate-900 dark:bg-white/10 dark:text-white">
-                <MapPin size={28} />
-              </span>
-              <div>
-                <h2 className="text-xl font-bold text-slate-950 dark:text-white">Based in Lahore, Pakistan</h2>
-                <p className="mt-1 text-slate-600 dark:text-gray-300">
-                  Available for full stack MERN development, frontend engineering, mobile app work, and product UI improvements.
-                </p>
+      <section className="pb-24 md:pb-36">
+        <div className="shell grid gap-4 md:grid-cols-3">
+          {details.map((detail, index) => (
+            <Reveal key={detail.label} delay={index * 100} variant="clip">
+              <div className="rounded-[2rem] bg-surface p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">{detail.label}</p>
+                <p className="mt-4 font-display text-xl font-bold md:text-2xl">{detail.value}</p>
               </div>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
 export default Contact;

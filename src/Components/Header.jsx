@@ -1,10 +1,14 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Code2, Menu, Moon, Sun, X } from 'lucide-react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { ArrowUpRight, Moon, Sun } from 'lucide-react';
+import RollText from './RollText';
 
 const Header = ({ isDarkMode, onToggleTheme }) => {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isHidden, setIsHidden] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const { pathname } = useLocation();
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -15,84 +19,124 @@ const Header = ({ isDarkMode, onToggleTheme }) => {
     { path: '/contact', label: 'Contact' },
   ];
 
-  return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-[#dbd9d9]/80 bg-white/85 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-gray-950/80">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <NavLink to="/" className="flex items-center gap-3 text-xl font-bold text-slate-950 dark:text-white">
-            <span className="glow-border flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-900/20 dark:bg-white/10">
-              <Code2 size={24} />
-            </span>
-            <span className="leading-tight">
-              Muhammad Tayyab
-              <span className="block text-xs font-medium text-slate-500 dark:text-gray-400">Software Engineer</span>
-            </span>
-          </NavLink>
+  React.useEffect(() => setIsMenuOpen(false), [pathname]);
 
-          <div className="hidden md:flex items-center space-x-3">
+  React.useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+  }, [isMenuOpen]);
+
+  // Slide the bar away while scrolling down, bring it back on any scroll up.
+  React.useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setIsScrolled(y > 20);
+      setIsHidden(y > lastY && y > 240);
+      lastY = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const barTone = isMenuOpen
+    ? 'text-paper'
+    : isScrolled
+      ? 'border-b border-line/10 bg-paper/80 backdrop-blur-xl'
+      : '';
+
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-transform duration-500 ${
+        isHidden && !isMenuOpen ? '-translate-y-full' : ''
+      }`}
+    >
+      <div
+        className={`menu-overlay fixed inset-0 bg-ink text-paper xl:hidden ${isMenuOpen ? 'menu-open' : ''}`}
+        inert={!isMenuOpen}
+      >
+        <nav className="shell flex h-full flex-col justify-center gap-2 pt-20">
+          {navItems.map((item, index) => (
+            <div key={item.path} className="overflow-hidden">
+              <NavLink
+                to={item.path}
+                end
+                className={({ isActive }) =>
+                  `menu-link flex items-baseline gap-4 font-display text-5xl font-extrabold uppercase tracking-tight sm:text-6xl ${
+                    isActive ? 'text-accent' : ''
+                  }`
+                }
+                style={{ transitionDelay: isMenuOpen ? `${150 + index * 60}ms` : '0ms' }}
+              >
+                <span className="text-sm font-semibold text-paper/50">0{index + 1}</span>
+                {item.label}
+              </NavLink>
+            </div>
+          ))}
+        </nav>
+      </div>
+
+      <div className={`relative transition-colors duration-500 ${barTone}`}>
+        <div className="shell flex h-20 items-center justify-between">
+          <Link to="/" className="group flex items-center gap-3">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent font-display text-lg font-extrabold text-on-accent transition-transform duration-500 group-hover:rotate-[360deg]">
+              MT
+            </span>
+            <span className="whitespace-nowrap font-display text-lg font-bold uppercase leading-tight tracking-tight">
+              <RollText>Muhammad Tayyab</RollText>
+            </span>
+          </Link>
+
+          <nav className="hidden items-center gap-7 xl:flex">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
+                end
                 className={({ isActive }) =>
-                  `rounded-full px-4 py-2 text-sm font-semibold transition-all ${
-                    isActive
-                      ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/25 dark:bg-white dark:text-slate-900'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950 dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white'
+                  `group flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-colors ${
+                    isActive ? 'text-ink' : 'text-muted hover:text-ink'
                   }`
                 }
               >
-                {item.label}
+                {({ isActive }) => (
+                  <>
+                    <span className={`h-1.5 w-1.5 rounded-full bg-accent transition-transform duration-300 ${isActive ? 'scale-100' : 'scale-0'}`} />
+                    <RollText>{item.label}</RollText>
+                  </>
+                )}
               </NavLink>
             ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
             <button
+              type="button"
               onClick={onToggleTheme}
-              className="ml-2 flex h-11 w-11 items-center justify-center rounded-full border border-[#dbd9d9] bg-white text-slate-700 shadow-sm transition-colors hover:bg-slate-100 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+              className="flex h-11 w-11 items-center justify-center rounded-full ring-1 ring-inset ring-line/20 transition-transform duration-500 hover:rotate-45"
               aria-label="Toggle theme"
             >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
-          </div>
-          <div className="flex items-center gap-3 md:hidden">
-            <button
-              onClick={onToggleTheme}
-              className="glow-btn flex h-10 w-10 items-center justify-center rounded-full border border-[#dbd9d9] bg-white text-slate-700 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-white"
-              aria-label="Toggle theme"
+            <Link
+              to="/contact"
+              className="group hidden items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold uppercase tracking-wider text-paper transition-colors hover:bg-accent hover:text-on-accent xl:inline-flex"
             >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+              <RollText>Let's talk</RollText>
+              <ArrowUpRight size={16} className="transition-transform duration-500 group-hover:rotate-45" />
+            </Link>
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-slate-700 hover:text-slate-950 dark:text-gray-300 dark:hover:text-white"
+              type="button"
+              onClick={() => setIsMenuOpen((open) => !open)}
+              className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full bg-accent text-on-accent xl:hidden"
               aria-label="Toggle navigation"
+              aria-expanded={isMenuOpen}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <span className={`h-0.5 w-5 bg-current transition-transform duration-300 ${isMenuOpen ? 'translate-y-1 rotate-45' : ''}`} />
+              <span className={`h-0.5 w-5 bg-current transition-transform duration-300 ${isMenuOpen ? '-translate-y-1 -rotate-45' : ''}`} />
             </button>
           </div>
         </div>
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `block px-3 py-2 rounded-md text-base font-medium ${
-                      isActive
-                        ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
-                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950 dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white'
-                    }`
-                  }
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </NavLink>
-              ))}
-            </div>
-          </div>
-        )}
-      </nav>
+      </div>
     </header>
   );
 };

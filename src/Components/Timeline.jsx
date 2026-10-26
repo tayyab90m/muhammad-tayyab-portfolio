@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { BrainCircuit, Code2, Rocket, Smartphone } from "lucide-react";
 import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
+import useScrollProgress from "../hooks/useScrollProgress";
 
 const timelineEvents = [
     {
@@ -29,35 +31,43 @@ const timelineEvents = [
     },
 ];
 
+// Alternating timeline whose centre line draws itself as you scroll.
 const Timeline = () => {
+    const lineRef = useRef(null);
+    useScrollProgress(lineRef, { start: 0.75, end: 0.55 });
+
     return (
-        <section className="py-20 px-4 bg-slate-100/80 dark:bg-gray-800/50">
-            <div className="max-w-7xl mx-auto px-4">
-                <h2 className="text-4xl font-bold text-center mb-2 text-slate-950 dark:text-white">My Journey</h2>
-                <p className="mx-auto mb-14 max-w-3xl text-center text-lg text-slate-500 dark:text-gray-400">
+        <section className="py-24 md:py-36">
+            <div className="shell">
+                <SectionHeading index="04" label="Journey" title="How I got here">
                     A quick look at how my work has grown across frontend engineering, mobile development,
                     product delivery, and AI-assisted workflows.
-                </p>
+                </SectionHeading>
 
-                <div className="relative grid gap-6 lg:grid-cols-4">
-                    <div className="absolute left-0 right-0 top-16 hidden h-px bg-gradient-to-r from-slate-900/0 via-slate-900/25 to-slate-900/0 dark:via-white/20 lg:block" />
+                <div ref={lineRef} className="relative">
+                    <div className="absolute left-5 top-0 h-full w-px bg-line/15 md:left-1/2" />
+                    <div className="timeline-line absolute left-5 top-0 h-full w-px origin-top bg-accent md:left-1/2" />
+
                     {timelineEvents.map((event, index) => {
                         const Icon = event.icon;
+                        const isLeft = index % 2 === 0;
                         return (
-                            <Reveal key={event.title} delay={index * 100}>
-                                <article
-                                    className="glow-border relative rounded-3xl border border-[#dbd9d9] bg-white p-6 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
-                                >
-                                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-lg dark:bg-white/10">
-                                        <Icon size={30} />
+                            <div key={event.title} className="relative grid pb-16 pl-16 last:pb-0 md:grid-cols-2 md:pl-0">
+                                <span className="absolute left-5 top-1 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border border-accent bg-paper text-accent md:left-1/2">
+                                    <Icon size={18} />
+                                </span>
+                                <Reveal variant={isLeft ? 'left' : 'right'}>
+                                    <div className={isLeft ? 'md:pr-20 md:text-right' : 'md:col-start-2 md:pl-20'}>
+                                        <p className="font-display text-3xl font-extrabold uppercase tracking-tight text-accent md:text-4xl">
+                                            {event.year}
+                                        </p>
+                                        <h3 className="mt-3 font-display text-2xl font-bold">{event.title}</h3>
+                                        <p className={`mt-3 max-w-md leading-relaxed text-muted ${isLeft ? 'md:ml-auto' : ''}`}>
+                                            {event.description}
+                                        </p>
                                     </div>
-                                    <p className="mb-3 inline-flex rounded-full bg-slate-900/5 px-3 py-1 text-sm font-bold text-slate-900 dark:bg-white/10 dark:text-white">
-                                        {event.year}
-                                    </p>
-                                    <h3 className="text-xl font-bold text-slate-950 dark:text-white">{event.title}</h3>
-                                    <p className="mt-3 leading-relaxed text-slate-600 dark:text-gray-300">{event.description}</p>
-                                </article>
-                            </Reveal>
+                                </Reveal>
+                            </div>
                         );
                     })}
                 </div>

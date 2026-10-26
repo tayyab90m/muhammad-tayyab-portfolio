@@ -1,6 +1,8 @@
 import React from 'react';
-import { Heart, Wind, Footprints, Dumbbell, Dribbble } from 'lucide-react';
+import { Wind, Footprints, Dumbbell, Dribbble } from 'lucide-react';
 import Reveal from '../Components/Reveal';
+import PageHero from '../Components/PageHero';
+import Marquee from '../Components/Marquee';
 
 const Hobbies = () => {
   const hobbies = [
@@ -8,63 +10,83 @@ const Hobbies = () => {
       name: 'Badminton',
       description: 'Enjoying competitive matches and improving my skills on the court. Badminton helps me develop quick reflexes, strategic thinking, and maintain cardiovascular fitness while having fun.',
       icon: Wind,
+      tile: 'bg-accent text-on-accent md:col-span-2 md:row-span-2',
     },
     {
       name: 'Jogging',
       description: 'Early morning runs to stay fit and energized. Running clears my mind, boosts my energy levels, and provides a great opportunity to explore the outdoors while staying healthy.',
       icon: Footprints,
+      tile: 'bg-ink text-paper md:col-span-2',
     },
     {
       name: 'Gym',
       description: 'Regular workouts to maintain strength and fitness. Strength training not only builds physical resilience but also improves mental discipline, focus, and overall well-being.',
       icon: Dumbbell,
+      tile: 'bg-surface text-ink',
     },
     {
       name: 'Football',
       description: 'Playing football with friends and local teams. Football teaches teamwork, coordination, and provides an excellent cardiovascular workout while building camaraderie with teammates.',
       icon: Dribbble,
+      tile: 'text-ink ring-1 ring-inset ring-line/20',
     }
   ];
 
   return (
-    <div className="pt-36 pb-16 md:pt-44">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 mb-6">
-          <Heart className="text-slate-900 dark:text-white" size={44} />
-          <h1 className="text-4xl font-bold text-slate-950 dark:text-white">My Hobbies & Interests</h1>
-        </div>
+    <>
+      <PageHero label="Off the clock" title="Hobbies">
+        <p>
+          I'm someone who thrives on curiosity and continuous learning. In my free time, I enjoy badminton,
+          jogging, and football — they keep me energized, focused, and balanced — and the gym helps me build
+          both physical and mental resilience.
+        </p>
+        <p>
+          Beyond that, I love exploring new technologies, reading, and challenging myself with new stacks and
+          side projects. Solving coding puzzles, learning a framework, or building something from scratch —
+          I'm always up for it.
+        </p>
+      </PageHero>
 
-        <div className="mb-12 text-slate-600 dark:text-gray-300 text-lg leading-relaxed">
-          <p className="mb-4">
-            I'm someone who thrives on curiosity and continuous learning. In my free time, I enjoy engaging in physical activities like badminton, jogging, and football—they help me stay energized, focused, and balanced. Beyond that, I love spending time at the gym to maintain a healthy lifestyle and build both physical and mental resilience.
-          </p>
-          <p>
-            Apart from physical hobbies, I have a deep interest in exploring new technologies, reading books, and challenging myself with new stacks and side projects. Whether it's solving coding puzzles, learning a new framework, or building something from scratch—I'm always up for a challenge. I believe in maintaining a balance between physical fitness and intellectual growth.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="pb-20">
+        <div className="shell grid gap-4 md:auto-rows-[300px] md:grid-cols-4">
           {hobbies.map((hobby, index) => {
             const IconComponent = hobby.icon;
+            const isFeature = index === 0;
             return (
-              <Reveal key={hobby.name} delay={index * 90}>
-                <div
-                  className="glow-border overflow-hidden rounded-3xl border border-[#dbd9d9] bg-white text-slate-950 shadow-xl shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-black/20"
-                >
-                  <div className="h-48 bg-slate-900 flex items-center justify-center dark:bg-slate-950">
-                    <IconComponent className="text-white" size={80} strokeWidth={1.5} />
+              <Reveal key={hobby.name} delay={index * 100} variant="scale">
+                <article className={`group flex min-h-[280px] flex-col justify-between overflow-hidden rounded-[2rem] p-7 md:p-9 ${hobby.tile}`}>
+                  <div className="flex items-start justify-between">
+                    <IconComponent
+                      size={isFeature ? 96 : 52}
+                      strokeWidth={1.25}
+                      className="transition-transform duration-700 ease-out group-hover:-rotate-12 group-hover:scale-110"
+                    />
+                    <span className="font-display text-sm font-bold opacity-50">0{index + 1}</span>
                   </div>
-                  <div className="p-5">
-                    <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">{hobby.name}</h3>
-                    <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">{hobby.description}</p>
+                  <div>
+                    <h2 className={`font-display font-extrabold uppercase leading-none tracking-tight ${isFeature ? 'text-4xl sm:text-5xl xl:text-6xl' : 'text-3xl'}`}>
+                      {hobby.name}
+                    </h2>
+                    <p className={`mt-4 text-sm leading-relaxed opacity-75 ${isFeature ? 'max-w-md md:text-base' : 'line-clamp-3'}`}>
+                      {hobby.description}
+                    </p>
                   </div>
-                </div>
+                </article>
               </Reveal>
             );
           })}
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section className="pb-24 md:pb-32" aria-label="Interests">
+        <Marquee
+          items={['Badminton', 'Jogging', 'Gym', 'Football', 'Reading', 'New tech', 'Side projects']}
+          speed={32}
+          reverse
+          itemClassName="text-outline font-display text-5xl font-extrabold uppercase tracking-tight md:text-6xl"
+        />
+      </section>
+    </>
   );
 };
 

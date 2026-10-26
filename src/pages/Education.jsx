@@ -1,6 +1,6 @@
 import React from 'react';
-import { GraduationCap, Calendar } from 'lucide-react';
 import Reveal from '../Components/Reveal';
+import PageHero from '../Components/PageHero';
 
 const Education = () => {
   const education = [
@@ -31,31 +31,39 @@ const Education = () => {
   ];
 
   return (
-    <div className="pt-36 pb-16 md:pt-44">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3 mb-12">
-          <GraduationCap className="text-slate-900 dark:text-white" size={48} />
-          <h1 className="text-4xl font-bold text-slate-950 dark:text-white">Education & Certifications</h1>
-        </div>
-        <div className="space-y-10">
+    <>
+      <PageHero label="Learning" title="Education" count={String(education.length).padStart(2, '0')}>
+        <p>
+          From a pre-engineering foundation to a computer science degree, then focused bootcamp and
+          certification work on modern JavaScript and React.
+        </p>
+        <p>Learning never really stopped — today it happens on real products, every sprint.</p>
+      </PageHero>
+
+      <section className="pb-24 md:pb-36">
+        <div className="shell">
           {education.map((item, index) => (
             <Reveal key={item.degree} delay={index * 80}>
-              <div
-                className="glow-border rounded-3xl border border-[#dbd9d9] bg-white p-8 shadow-xl shadow-slate-200/60 transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20 dark:hover:bg-white/10"
-              >
-                <h2 className="text-2xl font-semibold text-slate-900 dark:text-white mb-2">{item.degree}</h2>
-                <h3 className="text-xl text-slate-800 dark:text-gray-200 mb-2">{item.institution}</h3>
-                <div className="flex items-center text-slate-500 dark:text-gray-400 mb-4">
-                  <Calendar size={18} className="mr-2" />
-                  <span>{item.year}</span>
+              <article className="group grid gap-6 border-t border-line/15 py-12 last:border-b md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,1fr)] md:items-start md:gap-12">
+                <p className="text-outline font-display text-4xl font-extrabold leading-none tracking-tight md:text-5xl">
+                  {item.year.split(' - ')[0]}
+                  {item.year.includes(' - ') && (
+                    <span className="block text-xl md:text-2xl">→ {item.year.split(' - ')[1]}</span>
+                  )}
+                </p>
+                <div>
+                  <h2 className="font-display text-2xl font-bold leading-tight transition-transform duration-500 group-hover:translate-x-2 md:text-3xl">
+                    {item.degree}
+                  </h2>
+                  <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-accent">{item.institution}</p>
                 </div>
-                <p className="text-slate-600 dark:text-gray-300 leading-relaxed">{item.description}</p>
-              </div>
+                <p className="leading-relaxed text-muted">{item.description}</p>
+              </article>
             </Reveal>
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
 

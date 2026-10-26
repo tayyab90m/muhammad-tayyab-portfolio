@@ -4,16 +4,22 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
       extend: {
+        // Theme tokens live as RGB triplets in index.css so light/dark can swap them
+        // while Tailwind opacity modifiers (e.g. border-line/15) keep working.
         colors: {
-          primary: "#F4A261",
-          orange: "#F4A261",
-          secondary: "#5D8A82",
-          accent: "#e5e7e6",
-          lightGray: "#b7b5b3",
-          darkGray: "#373f51",
+          paper: "rgb(var(--paper) / <alpha-value>)",
+          surface: "rgb(var(--surface) / <alpha-value>)",
+          ink: "rgb(var(--ink) / <alpha-value>)",
+          muted: "rgb(var(--muted) / <alpha-value>)",
+          line: "rgb(var(--line) / <alpha-value>)",
+          accent: "rgb(var(--accent) / <alpha-value>)",
+          "on-accent": "rgb(var(--on-accent) / <alpha-value>)",
+        },
+        fontFamily: {
+          display: ['"Bricolage Grotesque"', "system-ui", "sans-serif"],
+          sans: ["Inter", "system-ui", "sans-serif"],
         },
       },
     },
     plugins: [],
   }
-  

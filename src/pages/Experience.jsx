@@ -1,13 +1,14 @@
 import React from 'react';
-import { BriefcaseBusiness, CalendarDays, Layers, Rocket } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 import Reveal from '../Components/Reveal';
+import PageHero from '../Components/PageHero';
+import Marquee from '../Components/Marquee';
 
 const experiences = [
   {
     role: 'Software Engineer',
     company: 'Keeyu',
     period: '2023 - Present',
-    icon: Rocket,
     points: [
       'Build and maintain frontend features with React.js and Next.js, integrating REST APIs and handling complex UI state for responsive, user-friendly interfaces.',
       'Consume and manage GraphQL queries and mutations on the frontend, and develop backend API endpoints with Node.js and Fastify.',
@@ -19,7 +20,6 @@ const experiences = [
     role: 'Associate Software Engineer',
     company: 'Eritheia Labs',
     period: '2022 - 2023',
-    icon: Layers,
     points: [
       'Developed frontend screens and components with React.js and Next.js, integrating REST APIs and keeping UI state in sync with backend data.',
       'Implemented GraphQL queries on the frontend using Apollo Client, with proper loading and error handling for dynamic content.',
@@ -29,57 +29,73 @@ const experiences = [
   },
 ];
 
+const stack = ['React.js', 'Next.js', 'GraphQL', 'Apollo Client', 'Node.js', 'Fastify', 'React Native', 'SSR / SSG', 'REST APIs'];
+
 const Experience = () => {
   return (
-    <div className="pt-36 pb-16 md:pt-44">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 max-w-3xl">
-          <div className="mb-4 flex items-center gap-3">
-            <BriefcaseBusiness className="text-slate-900 dark:text-white" size={44} />
-            <h1 className="text-4xl font-bold text-slate-950 dark:text-white">Experience</h1>
-          </div>
-          <p className="text-lg leading-relaxed text-slate-600 dark:text-gray-300">
-            Practical software engineering experience across web apps, mobile apps, dashboards,
-            e-commerce systems, sports products, payment flows, and AI-assisted development workflows.
-          </p>
-        </div>
+    <>
+      <PageHero label="Career" title="Experience" count={String(experiences.length).padStart(2, '0')}>
+        <p>
+          Practical software engineering experience across web apps, mobile apps, dashboards,
+          e-commerce systems, sports products, and payment flows.
+        </p>
+        <p>
+          Day to day I work across the stack — React and Next.js on the front, Node.js and Fastify
+          behind it — with AI-assisted workflows speeding up every step.
+        </p>
+      </PageHero>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {experiences.map((experience, index) => {
-            const Icon = experience.icon;
-            return (
-              <Reveal key={experience.role} delay={index * 100}>
-                <article
-                  className="glow-border group overflow-hidden rounded-3xl border border-[#dbd9d9] bg-white shadow-xl shadow-slate-200/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-black/20"
-                >
-                  <div className="bg-slate-900 p-6 text-white dark:bg-slate-950">
-                    <div className="mb-8 flex items-center justify-between">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white">
-                        <Icon size={34} />
-                      </div>
-                      <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">
-                        <CalendarDays size={16} />
-                        {experience.period}
-                      </div>
-                    </div>
-                    <h2 className="text-2xl font-bold">{experience.role}</h2>
-                    <p className="mt-2 text-white/85">{experience.company}</p>
+      <section className="pb-20">
+        <div className="shell">
+          {experiences.map((experience, index) => (
+            <article
+              key={experience.role}
+              className="grid gap-10 border-t border-line/15 py-14 md:grid-cols-[1fr_1.3fr] md:gap-16 md:py-24"
+            >
+              <div className="md:sticky md:top-32 md:self-start">
+                <Reveal variant="left">
+                  <div>
+                    <p className="text-outline font-display text-7xl font-extrabold leading-none md:text-8xl">
+                      0{index + 1}
+                    </p>
+                    <p className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-on-accent">
+                      <CalendarDays size={15} />
+                      {experience.period}
+                    </p>
+                    <h2 className="mt-5 font-display text-4xl font-extrabold uppercase leading-[0.95] tracking-tight md:text-5xl">
+                      {experience.company}
+                    </h2>
+                    <p className="mt-3 text-xl text-muted">{experience.role}</p>
                   </div>
-                  <div className="space-y-4 p-6">
-                    {experience.points.map((point) => (
-                      <div key={point} className="flex gap-3 text-slate-600 dark:text-gray-300">
-                        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-slate-900 dark:bg-white" />
-                        <p className="leading-relaxed">{point}</p>
-                      </div>
-                    ))}
-                  </div>
-                </article>
-              </Reveal>
-            );
-          })}
+                </Reveal>
+              </div>
+
+              <ol className="space-y-8">
+                {experience.points.map((point, pointIndex) => (
+                  <Reveal key={point} delay={pointIndex * 90}>
+                    <li className="grid grid-cols-[52px_1fr] gap-4 border-b border-line/10 pb-8 last:border-b-0">
+                      <span className="font-display text-lg font-bold text-accent">
+                        {String(pointIndex + 1).padStart(2, '0')}
+                      </span>
+                      <p className="text-base leading-relaxed md:text-lg">{point}</p>
+                    </li>
+                  </Reveal>
+                ))}
+              </ol>
+            </article>
+          ))}
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section className="border-y border-line/15 py-8" aria-label="Stack">
+        <Marquee
+          items={stack}
+          speed={30}
+          itemClassName="font-display text-3xl font-extrabold uppercase tracking-tight md:text-4xl"
+        />
+      </section>
+      <div className="h-24 md:h-32" />
+    </>
   );
 };
 

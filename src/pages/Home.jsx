@@ -1,7 +1,16 @@
 import React from 'react';
-import { ArrowRight, Code2, Database, MonitorSmartphone, Rocket, Sparkles, User, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowDown, ArrowUpRight, Zap } from 'lucide-react';
 import Timeline from '../Components/Timeline';
 import Reveal from '../Components/Reveal';
+import SplitText from '../Components/SplitText';
+import Marquee from '../Components/Marquee';
+import CountUp from '../Components/CountUp';
+import ScrollHighlight from '../Components/ScrollHighlight';
+import SectionHeading from '../Components/SectionHeading';
+import ProjectStack from '../Components/ProjectStack';
+import RollText from '../Components/RollText';
+import projects from '../data/projectsData';
 
 const Home = () => {
 
@@ -11,12 +20,10 @@ const Home = () => {
   const diffTime = now - startDate;
   const diffMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30.4375));
   const years = Math.floor(diffMonths / 12);
-  const months = diffMonths % 12;
-  const experience = `${years}.${months}`;
   const impactStats = [
-    { value: `${experience}+`, label: 'Years Experience' },
-    { value: '10+', label: 'Products & Modules' },
-    { value: '3', label: 'Core Platforms' },
+    { value: years, suffix: '+', label: 'Years experience' },
+    { value: 10, suffix: '+', label: 'Products & modules' },
+    { value: 3, suffix: '', label: 'Core platforms' },
   ];
   const aboutHighlights = [
     'Build full-stack MERN applications with clean React interfaces and reliable Node.js APIs.',
@@ -26,138 +33,141 @@ const Home = () => {
   const skillGroups = [
     {
       title: 'Frontend Engineering',
-      icon: MonitorSmartphone,
       skills: ['React.js', 'Next.js', 'React Native', 'JavaScript (ES6+)', 'TypeScript', 'Redux Toolkit', 'Zustand', 'Tailwind CSS', 'SCSS'],
     },
     {
       title: 'Backend & APIs',
-      icon: Database,
       skills: ['Node.js', 'Fastify', 'Express.js', 'REST API Development', 'GraphQL (Apollo Client)', 'WebSockets', 'MongoDB'],
     },
     {
       title: 'Tools & Workflow',
-      icon: Sparkles,
       skills: ['Claude Code', 'Cursor', 'Antigravity', 'Windsurf', 'DeepSeek', 'Grok', 'Git & GitHub', 'Postman', 'Vercel', 'Netlify', 'Agile/Scrum', 'Code Review'],
     },
   ];
+  const marqueeSkills = ['React.js', 'Next.js', 'React Native', 'Node.js', 'TypeScript', 'MongoDB', 'GraphQL', 'Fastify', 'Tailwind CSS'];
+  const marqueeTraits = ['Clean architecture', 'Polished UI', 'Fast delivery', 'AI-assisted', 'Real-time apps', 'Mobile first'];
 
   return (
-    <div className="pt-20">
-      <section className="relative overflow-hidden px-4 py-24 md:py-32">
-        <div className="absolute -left-24 top-24 h-80 w-80 rounded-full bg-slate-300/30 blur-3xl dark:bg-slate-600/10" />
-        <div className="absolute right-0 top-40 h-80 w-80 rounded-full bg-slate-400/20 blur-3xl dark:bg-slate-500/10" />
-        <div className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-slate-300/20 blur-3xl dark:bg-slate-700/10" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dbd9d9]/20 bg-slate-900/5 px-4 py-2 text-sm font-semibold text-slate-900 dark:border-white/15 dark:bg-white/10 dark:text-white">
-              <Sparkles size={16} />
-              Full Stack Engineer | Web and Mobile Apps | AI Assisted Development
-            </span>
-            <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-7xl">
-              I build fast, clean, and scalable digital products.
-            </h1>
-            <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-600 dark:text-gray-300">
-              I'm Muhammad Tayyab, a software engineer focused on one thing: delivering working
-              products fast. By combining solid engineering experience with AI tools like Claude
-              Code, Cursor, Antigravity, and Grok, I turn ideas into reliable, launch ready software
-              in a fraction of the usual time, without compromising on quality.
-            </p>
-            <div className="mb-8 grid max-w-2xl grid-cols-3 gap-3">
-              {impactStats.map((stat, index) => (
-                <Reveal key={stat.label} delay={index * 80}>
-                  <div className="glow-border rounded-2xl border border-[#dbd9d9] bg-white/80 p-4 shadow-lg shadow-slate-200/50 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
-                    <p className="text-2xl font-extrabold text-slate-950 dark:text-white">{stat.value}</p>
-                    <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-gray-400">{stat.label}</p>
-                  </div>
-                </Reveal>
-              ))}
+    <>
+      <section className="relative flex min-h-screen flex-col justify-end pb-12 pt-32 md:pb-16">
+        <div className="shell">
+          <Reveal>
+            <div className="mb-10 flex flex-wrap items-center justify-between gap-4 text-sm font-semibold uppercase tracking-[0.2em] text-muted">
+              <span className="flex items-center gap-3">
+                <span className="pulse-dot h-2.5 w-2.5 rounded-full bg-green-500" />
+                Available for work
+              </span>
+              <span>Full stack engineer — Lahore, PK</span>
             </div>
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <a
-                href="/projects"
-                className="glow-btn inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 font-semibold text-white shadow-xl shadow-slate-900/25 transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-slate-900 dark:shadow-white/10"
-              >
-                View Projects
-                <ArrowRight size={18} />
-              </a>
-              <a
-                href="/contact"
-                className="glow-btn inline-flex items-center justify-center rounded-full border border-[#dbd9d9] px-6 py-3 font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-white/15 dark:text-white dark:hover:bg-white/10"
-              >
-                Contact Me
-              </a>
-            </div>
-          </div>
+          </Reveal>
 
-          <div className="glow-border rounded-[2rem] border border-[#dbd9d9] bg-white/80 p-6 shadow-2xl shadow-slate-200/70 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-black/30">
-            <div className="rounded-[1.5rem] bg-slate-900 p-6 text-white">
-              <div className="mb-10 flex items-center justify-between">
-                <div className="rounded-2xl bg-white/10 p-4 text-white">
-                  <Rocket size={38} />
-                </div>
-                <span className="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">
-                  {experience}+ years
+          <h1 className="font-display text-[clamp(2.8rem,11vw,10.5rem)] font-extrabold uppercase leading-[0.82] tracking-tighter">
+            <SplitText text="Muhammad" className="block" />
+            <span className="flex items-end justify-between gap-6">
+              <SplitText text="Tayyab" delay={250} />
+              <a
+                href="#about"
+                className="group relative mb-[0.08em] hidden h-28 w-28 shrink-0 lg:h-36 lg:w-36 items-center justify-center sm:flex"
+                aria-label="Scroll to about section"
+              >
+                <svg viewBox="0 0 200 200" className="spin-slow absolute inset-0 h-full w-full">
+                  <defs>
+                    <path id="badge-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+                  </defs>
+                  <text className="fill-current font-sans text-[15px] font-semibold uppercase">
+                    <textPath href="#badge-circle" textLength="486" lengthAdjust="spacing">
+                      Full stack · AI assisted · Web & mobile ·
+                    </textPath>
+                  </text>
+                </svg>
+                <span className="flex h-[38%] w-[38%] items-center justify-center rounded-full bg-accent text-on-accent transition-transform duration-500 group-hover:scale-110">
+                  <ArrowDown className="h-1/2 w-1/2" strokeWidth={2.5} />
                 </span>
-              </div>
-              <h2 className="text-3xl font-bold">Product-focused engineering</h2>
-              <p className="mt-3 text-gray-300">
-                From idea to release, I focus on clean UI, practical architecture,
-                smooth integrations, and user journeys that feel simple.
+              </a>
+            </span>
+          </h1>
+
+          <div className="mt-12 grid gap-10 border-t border-line/15 pt-8 lg:grid-cols-[1.1fr_1fr] lg:items-end">
+            <Reveal delay={400}>
+              <p className="max-w-xl text-base leading-relaxed text-muted md:text-lg">
+                I build <span className="font-semibold text-ink">fast, clean and scalable</span> digital products.
+                By pairing solid engineering with AI tools like Claude Code, Cursor, Antigravity and Grok,
+                I turn ideas into reliable, launch-ready software in a fraction of the usual time.
               </p>
-            </div>
-            <div className="mt-5 grid grid-cols-3 gap-3 text-center">
-              {['Frontend', 'Mobile', 'Automation'].map((item) => (
-                <div key={item} className="rounded-2xl bg-slate-100 p-4 text-sm font-bold text-slate-700 dark:bg-white/10 dark:text-gray-200">
-                  {item}
+            </Reveal>
+            <Reveal delay={550}>
+              <div className="flex flex-col gap-8 lg:items-end">
+                <dl className="grid grid-cols-3 divide-x divide-line/15">
+                  {impactStats.map((stat) => (
+                    <div key={stat.label} className="flex flex-col px-4 first:pl-0 last:pr-0 md:px-8">
+                      <dt className="order-2 mt-1 text-xs font-semibold uppercase tracking-wider text-muted">{stat.label}</dt>
+                      <dd className="font-display text-3xl font-extrabold md:text-5xl">
+                        <CountUp value={stat.value} suffix={stat.suffix} />
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    to="/projects"
+                    className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-4 font-semibold uppercase tracking-wider text-on-accent transition-transform hover:-translate-y-0.5"
+                  >
+                    <RollText>View projects</RollText>
+                    <ArrowUpRight size={18} className="transition-transform duration-500 group-hover:rotate-45" />
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="group inline-flex items-center gap-2 rounded-full px-7 py-4 font-semibold uppercase tracking-wider ring-1 ring-inset ring-line/25 transition-colors hover:bg-ink hover:text-paper"
+                  >
+                    <RollText>Contact me</RollText>
+                  </Link>
                 </div>
-              ))}
-            </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
-      <section className="px-4 py-20" id="about">
-        <div className="mx-auto grid max-w-7xl items-start gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="glow-border rounded-[2rem] border border-[#dbd9d9] bg-white p-7 shadow-2xl shadow-slate-200/60 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
-            <div className="mb-6 flex items-center gap-3">
-              <span className="rounded-2xl bg-slate-900/5 p-3 text-slate-900 dark:bg-white/10 dark:text-white">
-                <User size={30} />
-              </span>
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">About Me</p>
-                <h2 className="text-3xl font-bold text-slate-950 dark:text-white">Full Stack MERN Developer</h2>
-              </div>
-            </div>
-            <p className="text-lg leading-relaxed text-slate-600 dark:text-gray-300">
-              I am a Full Stack MERN Stack Developer with <span className="font-semibold text-slate-900 dark:text-white">{experience} years</span> of
-              experience building modern web and mobile products across e-commerce, fitness, sports,
-              dashboards, and payment-related workflows. I enjoy turning complex requirements into clean
-              interfaces, scalable APIs, reusable components, and smooth user experiences.
-            </p>
-            <p className="mt-5 text-lg leading-relaxed text-slate-600 dark:text-gray-300">
-              My core stack includes MongoDB, Express.js, React, Node.js, Next.js, and React Native. I also
-              lean on AI-assisted development throughout my workflow — from planning to shipping — to move
-              up to 10x faster without sacrificing code quality or maintainability.
-            </p>
-           
-          </div>
-          <div className="grid gap-3">
+
+      <section className="relative z-10 overflow-hidden py-16 md:py-24" aria-label="Skills">
+        <div className="-mx-4 -rotate-2 bg-accent py-5 text-on-accent md:py-7">
+          <Marquee
+            items={marqueeSkills}
+            speed={35}
+            separator={<span className="text-on-accent/40">✦</span>}
+            itemClassName="font-display text-2xl font-extrabold uppercase tracking-tight md:text-4xl"
+          />
+        </div>
+        <div className="-mx-4 -mt-3 rotate-1 bg-ink py-4 text-paper md:py-5">
+          <Marquee
+            items={marqueeTraits}
+            speed={40}
+            reverse
+            itemClassName="font-display text-lg font-bold uppercase tracking-tight md:text-2xl"
+          />
+        </div>
+      </section>
+
+      <section id="about" className="scroll-mt-24 py-24 md:py-32">
+        <div className="shell">
+          <SectionHeading index="01" label="About" title="Who I am" />
+          <ScrollHighlight
+            className="font-display text-2xl font-semibold leading-[1.2] tracking-tight md:text-4xl lg:text-[2.75rem]"
+            text={`I'm a full stack MERN engineer with ${years}+ years of building web and mobile products across e-commerce, fitness, sports, dashboards and payments — pairing solid engineering with AI-assisted workflows to ship up to 10x faster, without cutting corners.`}
+          />
+          <div className="mt-20 grid gap-10 md:grid-cols-4">
             {aboutHighlights.map((highlight, index) => (
-              <Reveal key={highlight} delay={index * 80}>
-                <div className="glow-border flex gap-3 rounded-2xl border border-[#dbd9d9] bg-white p-4 shadow-lg shadow-slate-200/50 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-900/5 text-sm font-bold text-slate-900 dark:bg-white/10 dark:text-white">
-                    0{index + 1}
-                  </span>
-                  <p className="text-sm leading-relaxed text-slate-600 dark:text-gray-300">{highlight}</p>
+              <Reveal key={highlight} delay={index * 120}>
+                <div className="border-t border-line/15 pt-5">
+                  <p className="mb-4 font-display text-sm font-bold text-accent">0{index + 1}</p>
+                  <p className="leading-relaxed text-muted">{highlight}</p>
                 </div>
               </Reveal>
             ))}
-            <Reveal delay={aboutHighlights.length * 80}>
-              <div className="rounded-2xl bg-slate-900 p-5 text-white shadow-xl shadow-slate-900/20">
-                <div className="mb-2 flex items-center gap-3">
-                  <Zap size={22} />
-                  <h3 className="text-lg font-bold">Engineering Focus</h3>
-                </div>
-                <p className="text-sm leading-relaxed text-white/85">
+            <Reveal delay={aboutHighlights.length * 120}>
+              <div className="rounded-3xl bg-ink p-6 text-paper">
+                <Zap className="mb-4 text-accent" size={24} />
+                <p className="font-display text-lg font-bold">Engineering focus</p>
+                <p className="mt-2 text-sm leading-relaxed text-paper/70">
                   Clean architecture, polished UI, performance, collaboration, and features that are useful in real products.
                 </p>
               </div>
@@ -165,40 +175,50 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="px-4 py-20 bg-white/70 dark:bg-gray-800/50">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-center gap-2 mb-8">
-            <Code2 className="text-slate-900 dark:text-white" size={44} />
-            <h2 className="text-3xl font-bold text-slate-950 dark:text-white">Core Skills</h2>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {skillGroups.map((group, index) => {
-              const Icon = group.icon;
-              return (
-                <Reveal key={group.title} delay={index * 100}>
-                  <div className="glow-border rounded-3xl border border-[#dbd9d9] bg-white p-6 shadow-xl shadow-slate-200/60 transition-transform duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
-                    <div className="mb-5 flex items-center gap-3">
-                      <span className="rounded-2xl bg-slate-900/5 p-3 text-slate-900 dark:bg-white/10 dark:text-white">
-                        <Icon size={26} />
-                      </span>
-                      <h3 className="text-xl font-bold text-slate-950 dark:text-white">{group.title}</h3>
-                    </div>
-                    <div className="flex flex-wrap gap-3">
-                      {group.skills.map((skill) => (
-                        <span key={skill} className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-gray-200">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
+
+      <section className="py-24 md:py-32">
+        <div className="shell">
+          <SectionHeading index="02" label="Expertise" title="What I do" />
+          <div>
+            {skillGroups.map((group, index) => (
+              <Reveal key={group.title} delay={index * 100}>
+                <div className="fill-row grid gap-6 border-t border-line/15 px-2 py-10 last:border-b md:grid-cols-[100px_1fr_1.3fr] md:items-center md:px-6">
+                  <span className="font-display text-lg font-bold text-muted">0{index + 1}</span>
+                  <h3 className="font-display text-3xl font-extrabold uppercase leading-none tracking-tight md:text-4xl">{group.title}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <span key={skill} className="pill">{skill}</span>
+                    ))}
                   </div>
-                </Reveal>
-              );
-            })}
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
+
+      <section className="py-24 md:py-32">
+        <div className="shell">
+          <SectionHeading
+            index="03"
+            label="Selected work"
+            title="Featured projects"
+            aside={
+              <Link
+                to="/projects"
+                className="group inline-flex shrink-0 items-center gap-2 self-start font-semibold uppercase tracking-wider md:self-end"
+              >
+                <RollText>All {projects.length} projects</RollText>
+                <ArrowUpRight size={18} className="text-accent transition-transform duration-500 group-hover:rotate-45" />
+              </Link>
+            }
+          />
+          <ProjectStack projects={projects.slice(0, 4)} />
+        </div>
+      </section>
+
       <Timeline />
-    </div>
+    </>
   );
 }
 export default Home;

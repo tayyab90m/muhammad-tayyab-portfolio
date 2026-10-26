@@ -1,8 +1,7 @@
 import React from 'react';
-import { ArrowRight, Code2, Database, FileText, MonitorSmartphone, Rocket, Sparkles, User, Zap } from 'lucide-react';
+import { ArrowRight, Code2, Database, MonitorSmartphone, Rocket, Sparkles, User, Zap } from 'lucide-react';
 import Timeline from '../Components/Timeline';
 import Reveal from '../Components/Reveal';
-import { viewResumePdf } from '../utils/generateResumePdf';
 
 const Home = () => {
 
@@ -87,14 +86,6 @@ const Home = () => {
               >
                 Contact Me
               </a>
-              <button
-                type="button"
-                onClick={viewResumePdf}
-                className="glow-btn inline-flex items-center justify-center gap-2 rounded-full border border-[#dbd9d9] px-6 py-3 font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-white/15 dark:text-white dark:hover:bg-white/10"
-              >
-                <FileText size={18} />
-                Resume
-              </button>
             </div>
           </div>
 

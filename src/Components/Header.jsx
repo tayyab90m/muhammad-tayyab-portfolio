@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Code2, Download, FileText, Menu, Moon, Sun, X } from 'lucide-react';
-import { downloadResumePdf, viewResumePdf } from '../utils/generateResumePdf';
+import { Code2, Menu, Moon, Sun, X } from 'lucide-react';
 
 const Header = ({ isDarkMode, onToggleTheme }) => {
 
@@ -47,23 +46,6 @@ const Header = ({ isDarkMode, onToggleTheme }) => {
               </NavLink>
             ))}
             <button
-              type="button"
-              onClick={viewResumePdf}
-              className="glow-btn ml-2 inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-900/25 transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-slate-900 dark:shadow-white/10"
-            >
-              <FileText size={16} />
-              Resume
-            </button>
-            <button
-              type="button"
-              onClick={downloadResumePdf}
-              aria-label="Download resume as PDF"
-              title="Download resume as PDF"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#dbd9d9] bg-white text-slate-700 shadow-sm transition-colors hover:bg-slate-100 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
-            >
-              <Download size={16} />
-            </button>
-            <button
               onClick={onToggleTheme}
               className="ml-2 flex h-11 w-11 items-center justify-center rounded-full border border-[#dbd9d9] bg-white text-slate-700 shadow-sm transition-colors hover:bg-slate-100 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
               aria-label="Toggle theme"
@@ -107,28 +89,6 @@ const Header = ({ isDarkMode, onToggleTheme }) => {
                   {item.label}
                 </NavLink>
               ))}
-              <button
-                type="button"
-                onClick={() => {
-                  viewResumePdf();
-                  setIsMenuOpen(false);
-                }}
-                className="mt-1 flex w-full items-center gap-2 rounded-md bg-slate-900 px-3 py-2 text-base font-medium text-white dark:bg-white dark:text-slate-900"
-              >
-                <FileText size={18} />
-                View Resume
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  downloadResumePdf();
-                  setIsMenuOpen(false);
-                }}
-                className="flex w-full items-center gap-2 rounded-md border border-[#dbd9d9] px-3 py-2 text-base font-medium text-slate-700 dark:border-white/10 dark:text-white"
-              >
-                <Download size={18} />
-                Download Resume
-              </button>
             </div>
           </div>
         )}

@@ -11,8 +11,14 @@
   --line: 6 17 15;
   --accent: 150 116 40;
   --on-accent: 255 255 255;
+  --paper-soft: 238 230 212;
   --glow-green: 13 74 59 / 0.14;
+  --glow-green-soft: 13 74 59 / 0.1;
   --glow-gold: 150 116 40 / 0.14;
+  --grid-line: 150 116 40;
+  --grid-opacity: 0.45;
+  --star: 150 116 40;
+  --star-opacity: 0.35;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -24,8 +30,14 @@
   --line: 216 181 107;
   --accent: 216 181 107;
   --on-accent: 6 17 15;
+  --paper-soft: 8 24 19;
   --glow-green: 13 74 59 / 0.6;
+  --glow-green-soft: 13 74 59 / 0.42;
   --glow-gold: 216 181 107 / 0.12;
+  --grid-line: 216 181 107;
+  --grid-opacity: 0.55;
+  --star: 255 255 255;
+  --star-opacity: 0.8;
 }
 
 @layer base {
@@ -54,73 +66,73 @@
   }
 }
 
-/* Ambient background (Components/Background.jsx). */
-.bg-glow {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  will-change: transform;
+/* Ambient background (Components/Background.jsx): soft glows, a gold grid,
+   twinkling stars and an edge vignette. */
+.backdrop {
+  background:
+    radial-gradient(ellipse 60% 55% at 85% 10%, rgb(var(--glow-green)), transparent 70%),
+    radial-gradient(ellipse 30% 30% at 62% 18%, rgb(var(--glow-gold)), transparent 70%),
+    radial-gradient(ellipse 50% 50% at 5% 95%, rgb(var(--glow-green-soft)), transparent 70%),
+    linear-gradient(125deg, rgb(var(--paper)), rgb(var(--paper-soft)) 62%, rgb(var(--paper)));
 }
 
-.bg-glow-a {
-  top: -15vh;
-  right: -10vw;
-  width: 60vw;
-  height: 60vw;
-  max-width: 900px;
-  max-height: 900px;
-  background: radial-gradient(circle, rgb(var(--glow-green)) 0%, transparent 70%);
-  animation: glow-drift-a 28s ease-in-out infinite alternate;
-}
-
-.bg-glow-b {
-  top: 20vh;
-  right: 18vw;
-  width: 26vw;
-  height: 26vw;
-  max-width: 420px;
-  max-height: 420px;
-  background: radial-gradient(circle, rgb(var(--glow-gold)) 0%, transparent 70%);
-  animation: glow-drift-b 22s ease-in-out infinite alternate;
-}
-
-.bg-glow-c {
-  bottom: -20vh;
-  left: -15vw;
-  width: 55vw;
-  height: 55vw;
-  max-width: 800px;
-  max-height: 800px;
-  background: radial-gradient(circle, rgb(var(--glow-green)) 0%, transparent 70%);
-  opacity: 0.7;
-  animation: glow-drift-c 34s ease-in-out infinite alternate;
-}
-
-@keyframes glow-drift-a {
-  to { transform: translate(-8vw, 10vh) scale(1.1); }
-}
-
-@keyframes glow-drift-b {
-  to { transform: translate(6vw, 8vh) scale(0.85); }
-}
-
-@keyframes glow-drift-c {
-  to { transform: translate(10vw, -12vh) scale(1.15); }
-}
-
-.bg-dots {
+.backdrop-grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgb(var(--ink) / 0.09) 1px, transparent 1px);
-  background-size: 28px 28px;
-  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 35%, #000 20%, transparent 75%);
-  mask-image: radial-gradient(ellipse 70% 55% at 50% 35%, #000 20%, transparent 75%);
+  opacity: var(--grid-opacity);
+  background-image:
+    linear-gradient(rgb(var(--grid-line) / 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--grid-line) / 0.16) 1px, transparent 1px);
+  background-size: 76px 76px;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(80% 75% at 60% 40%, #000 20%, transparent 85%);
+  mask-image: radial-gradient(80% 75% at 60% 40%, #000 20%, transparent 85%);
 }
 
-.bg-vignette {
+.backdrop-stars {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 85% 75% at 50% 45%, transparent 55%, rgb(var(--paper) / 0.75) 100%);
+  opacity: var(--star-opacity);
+}
+
+.backdrop-stars::before,
+.backdrop-stars::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  animation: backdrop-twinkle 5s ease-in-out infinite alternate;
+}
+
+.backdrop-stars::before {
+  background-image:
+    radial-gradient(1.2px 1.2px at 20% 30%, rgb(var(--star)), transparent),
+    radial-gradient(1px 1px at 70% 18%, rgb(var(--star)), transparent),
+    radial-gradient(1.4px 1.4px at 45% 62%, rgb(var(--star)), transparent),
+    radial-gradient(1px 1px at 82% 70%, rgb(var(--star)), transparent),
+    radial-gradient(1px 1px at 12% 80%, rgb(var(--star)), transparent),
+    radial-gradient(1.2px 1.2px at 60% 40%, rgb(var(--star)), transparent),
+    radial-gradient(1px 1px at 90% 45%, rgb(var(--star)), transparent),
+    radial-gradient(1.3px 1.3px at 33% 12%, rgb(var(--star)), transparent);
+  background-size: 520px 520px;
+}
+
+.backdrop-stars::after {
+  opacity: 0.6;
+  background-image: radial-gradient(0.8px 0.8px at 30% 50%, rgb(var(--star) / 0.85), transparent);
+  background-size: 70px 70px;
+  animation-duration: 7s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes backdrop-twinkle {
+  from { opacity: 0.45; }
+  to { opacity: 1; }
+}
+
+.backdrop-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 120% 100% at 50% 40%, transparent 55%, rgb(var(--paper) / 0.85) 100%);
 }
 
 /* Film-grain overlay for a printed, editorial texture. */
